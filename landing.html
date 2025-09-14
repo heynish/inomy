@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inomy - Shop Smarter, Save Time</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        body {
+            font-family: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #262624;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header */
+        .header {
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: transparent;
+            white-space: nowrap;
+        }
+        
+        .logo {
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #ffffff;
+            position: relative;
+            letter-spacing: -0.02em;
+        }
+        
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 28px;
+            height: 3px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            border-radius: 2px;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        
+        .header-icon {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 20px;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .header-icon:hover {
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            margin-top: 8px;
+            background: #30302E;
+            min-width: 160px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
+        
+        .dropdown-content.show {
+            display: block;
+            animation: dropdownFade 0.2s ease;
+        }
+        
+        .dropdown-content a {
+            color: rgba(255, 255, 255, 0.8);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        
+        .dropdown-content a:hover {
+            background: rgba(99, 102, 241, 0.1);
+            color: #ffffff;
+        }
+        
+        .dropdown-content a:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .dropdown-content a:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+        
+        @keyframes dropdownFade {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Signup Dialog */
+        .signup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            animation: overlayFadeIn 0.3s ease;
+        }
+        
+        .signup-overlay.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .signup-dialog {
+            background: #30302E;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: dialogSlideIn 0.3s ease;
+            position: relative;
+        }
+        
+        .dialog-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 18px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .dialog-close:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .signup-dialog h3 {
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+        
+        .ixp-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+        
+        .ixp-badge i {
+            color: #ffd700;
+            font-size: 18px;
+        }
+        
+        .signup-description {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+        
+        .signup-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .signup-input {
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 14px;
+            color: #ffffff;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+        
+        .signup-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .signup-input:focus {
+            border-color: #6366f1;
+        }
+        
+        .signup-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        
+        .signup-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .signup-btn.primary {
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            color: #ffffff;
+        }
+        
+        .signup-btn.primary:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+        
+        .signup-btn.secondary {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .signup-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+        }
+        
+        @keyframes overlayFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes dialogSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        .header-btn {
+            padding: 8px 16px;
+            background: transparent;
+            border: 1.5px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .header-btn:hover {
+            background: #30302E;
+            border-color: rgba(99, 102, 241, 0.5);
+            color: #ffffff;
+        }
+        
+        .header-btn.primary {
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+        }
+        
+        .header-btn.primary:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+        
+        /* Search View */
+        .search-view {
+            width: 100%;
+            max-width: 1000px;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .search-view.hidden {
+            display: none;
+        }
+        
+        .hero-title {
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+            font-size: 56px;
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.03em;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 42px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 36px;
+            }
+        }
+        
+        .hero-subtitle {
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 40px;
+            letter-spacing: -0.01em;
+        }
+        
+        .value-indicator {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.5;
+        }
+        
+        .value-indicator span {
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+        }
+        
+        .category-container {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .category-btn {
+            padding: 12px 28px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            background: #30302E;
+            border-radius: 10px;
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            min-width: 160px;
+            letter-spacing: -0.01em;
+        }
+        
+        .category-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.2);
+            border-color: rgba(99, 102, 241, 0.5);
+        }
+        
+        .category-btn.active {
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            color: white;
+            border-color: transparent;
+        }
+        
+        .product-pills {
+            display: none;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            padding: 25px;
+            background: #30302E;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .product-pills.active {
+            display: flex;
+            animation: slideDown 0.3s ease;
+        }
+        
+        .pill {
+            padding: 8px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1.5px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        
+        .pill:hover {
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            color: white;
+            border-color: transparent;
+            transform: scale(1.05);
+        }
+        
+        /* Hide header and footer in chat mode */
+        .chat-active .header,
+        .chat-active .footer {
+            display: none;
+        }
+        
+        .chat-active .main-content {
+            flex: 1;
+            height: 100vh;
+        }
+        
+        /* Chat View */
+        .chat-view {
+            display: none;
+            width: 100%;
+            height: 100vh;
+            flex-direction: row;
+            animation: fadeIn 0.4s ease;
+        }
+        
+        .chat-view.active {
+            display: flex;
+        }
+        
+        /* Sidebar */
+        .chat-sidebar {
+            width: 260px;
+            background: #1a1a18;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 100;
+            transition: transform 0.3s ease;
+        }
+        
+        .chat-sidebar.sidebar-hidden {
+            transform: translateX(-100%);
+        }
+        
+        .chat-content.sidebar-collapsed {
+            margin-left: 0;
+        }
+        
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .sidebar-logo {
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .sidebar-logo::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 24px;
+            height: 3px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            border-radius: 2px;
+        }
+        
+        .new-chat-btn {
+            width: 100%;
+            padding: 10px 16px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            border: none;
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .new-chat-btn:hover {
+            transform: scale(1.02);
+        }
+        
+        .sidebar-menu {
+            flex: 1;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .menu-section {
+            margin-bottom: 24px;
+        }
+        
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            background: transparent;
+            width: 100%;
+            text-align: left;
+        }
+        
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+        }
+        
+        .menu-item.active {
+            background: rgba(99, 102, 241, 0.1);
+            color: #6366f1;
+            border-right: 2px solid #6366f1;
+        }
+        
+        .menu-item i {
+            width: 16px;
+            font-size: 16px;
+        }
+        
+        .sidebar-footer {
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        
+        .user-profile:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .user-info {
+            flex: 1;
+        }
+        
+        .user-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #ffffff;
+            margin-bottom: 2px;
+        }
+        
+        .user-points {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Chat Header */
+        .chat-header {
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .back-to-menu {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .back-to-menu:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+        
+        /* Chat Content Area */
+        .chat-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin-left: 260px;
+        }
+        
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            gap: 20px;
+        }
+        
+        .points-notification {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .points-notification .claim-link {
+            color: inherit;
+            text-decoration: underline;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+        
+        .points-notification .claim-link:hover {
+            opacity: 0.8;
+        }
+        
+        .chat-greeting {
+            font-size: 28px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .chat-greeting span {
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .chat-subtitle {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .chat-input-container {
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+        }
+        
+        .chat-input-wrapper {
+            position: relative;
+            width: 100%;
+            background: #30302E;
+            border-radius: 12px;
+            border: 1.5px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .chat-input-wrapper:focus-within {
+            border-color: transparent;
+        }
+        
+        .chat-input {
+            width: 100%;
+            min-height: 48px;
+            padding: 16px 50px 16px 20px;
+            border: none;
+            background: transparent;
+            font-size: 15px;
+            outline: none;
+            color: #ffffff;
+            resize: none;
+            font-family: inherit;
+            line-height: 1.4;
+        }
+        
+        .chat-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .chat-send-btn {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+        }
+        
+        .chat-send-btn:hover {
+            transform: translateY(-50%) scale(1.05);
+        }
+        
+        .suggestion-chips {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .suggestion-chip {
+            padding: 8px 16px;
+            background: #30302E;
+            border: 1px solid transparent;
+            border-radius: 20px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .suggestion-chip:hover {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: transparent;
+            color: #ffffff;
+        }
+        
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 8px 16px;
+            background: #30302E;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .back-btn:hover {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: rgba(99, 102, 241, 0.5);
+            color: #ffffff;
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 16px 30px;
+            background: transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .footer-copyright {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .footer-links .social-icon {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 16px;
+            transition: color 0.2s ease;
+            text-decoration: none;
+        }
+        
+        .footer-links .social-icon:hover {
+            color: #6366f1;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #6366f1;
+        }
+        
+        .footer-separator {
+            margin: 0 8px;
+            color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Icons */
+        .icon {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">inomy</div>
+        <div class="header-actions">
+            <div class="dropdown">
+                <button class="header-icon" title="See More" onclick="toggleDropdown()">
+                    <i class="fas fa-grip-vertical"></i>
+                </button>
+                <div id="dropdownMenu" class="dropdown-content">
+                    <a href="#">Blog</a>
+                    <a href="#">Rewards</a>
+                </div>
+            </div>
+            <button class="header-btn primary">Login</button>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Search View -->
+        <div id="search-view" class="search-view">
+            <h1 class="hero-title">Shop Without Bias, Earn Rewards</h1>
+            <p class="hero-subtitle">Every search earns you points • No ads • You own your intent</p>
+            
+            <div class="category-container">
+                <button class="category-btn" onclick="selectCategory('electronics')">Electronics</button>
+                <button class="category-btn" onclick="selectCategory('appliances')">Home Appliances</button>
+            </div>
+            
+            <div id="electronics-pills" class="product-pills">
+                <span class="pill" onclick="showChat('Laptops')">Laptops</span>
+                <span class="pill" onclick="showChat('Smartphones')">Smartphones</span>
+                <span class="pill" onclick="showChat('Headphones')">Headphones</span>
+                <span class="pill" onclick="showChat('Tablets')">Tablets</span>
+                <span class="pill" onclick="showChat('Smartwatches')">Smartwatches</span>
+                <span class="pill" onclick="showChat('Cameras')">Cameras</span>
+                <span class="pill" onclick="showChat('Gaming')">Gaming</span>
+                <span class="pill" onclick="showChat('Speakers')">Speakers</span>
+            </div>
+            
+            <div id="appliances-pills" class="product-pills">
+                <span class="pill" onclick="showChat('Refrigerators')">Refrigerators</span>
+                <span class="pill" onclick="showChat('Washers')">Washers</span>
+                <span class="pill" onclick="showChat('Microwaves')">Microwaves</span>
+                <span class="pill" onclick="showChat('Vacuums')">Vacuums</span>
+                <span class="pill" onclick="showChat('Air Fryers')">Air Fryers</span>
+                <span class="pill" onclick="showChat('Dishwashers')">Dishwashers</span>
+                <span class="pill" onclick="showChat('Blenders')">Blenders</span>
+                <span class="pill" onclick="showChat('Coffee Makers')">Coffee Makers</span>
+            </div>
+            
+            <div class="value-indicator">
+                Advertisers pay <span>up to $10+</span> per shopping intent<br>
+                Inomy redistributes this back to you
+            </div>
+        </div>
+        
+        <!-- Chat View -->
+        <div id="chat-view" class="chat-view">
+            <!-- Sidebar -->
+            <div class="chat-sidebar">
+                <div class="sidebar-header">
+                    <div class="sidebar-logo">inomy</div>
+                    <button class="new-chat-btn" onclick="startNewChat()">
+                        <i class="fas fa-plus"></i>
+                        <span>New Chat</span>
+                    </button>
+                </div>
+                
+                <div class="sidebar-menu">
+                    <div class="menu-section">
+                        <button class="menu-item" onclick="setActiveMenu(this)">
+                            <i class="fas fa-history"></i>
+                            <span>History</span>
+                        </button>
+                        <button class="menu-item" onclick="setActiveMenu(this)">
+                            <i class="fas fa-bullseye"></i>
+                            <span>Intents</span>
+                        </button>
+                    </div>
+                    
+                    <div class="menu-section">
+                        <button class="menu-item" onclick="setActiveMenu(this)">
+                            <i class="fas fa-wallet"></i>
+                            <span>Wallet</span>
+                        </button>
+                        <button class="menu-item" onclick="setActiveMenu(this)">
+                            <i class="fas fa-gift"></i>
+                            <span>Rewards</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="sidebar-footer">
+                    <div class="user-profile" onclick="toggleUserMenu()">
+                        <div class="user-avatar">U</div>
+                        <div class="user-info">
+                            <div class="user-name">User</div>
+                            <div class="user-points">100 IXP</div>
+                        </div>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chat Content -->
+            <div class="chat-content">
+                <div class="chat-header">
+                    <button class="back-to-menu" onclick="showSearch()" title="Back to Search">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Back to menu</span>
+                    </button>
+                </div>
+                <div class="chat-container">
+                    <div class="points-notification">
+                        You have 300 unclaimed points. <span class="claim-link" onclick="claimPoints()">Claim it now</span>
+                    </div>
+                    <div class="chat-greeting">Finding the best <span id="product-name">products</span> for you</div>
+                    
+                    <div class="chat-input-container">
+                        <div class="chat-input-wrapper">
+                            <textarea class="chat-input" placeholder="Describe what you're looking for..." onkeypress="handleChatKeyPress(event)" rows="2"></textarea>
+                            <button class="chat-send-btn" onclick="sendChatMessage()">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="suggestion-chips">
+                        <div class="suggestion-chip" onclick="fillInput('Best deals under $500')">Best deals under $500</div>
+                        <div class="suggestion-chip" onclick="fillInput('Compare top brands')">Compare top brands</div>
+                        <div class="suggestion-chip" onclick="fillInput('Energy efficient options')">Energy efficient options</div>
+                        <div class="suggestion-chip" onclick="fillInput('Latest models')">Latest models</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-copyright">
+            <span>© 2025 Inomy</span>
+        </div>
+        <div class="footer-links">
+            <a href="#">About</a>
+            <span class="footer-separator">|</span>
+            <a href="#">FAQ</a>
+            <span class="footer-separator">|</span>
+            <a href="#">Legal</a>
+            <span class="footer-separator">|</span>
+            <a href="#" class="social-icon" aria-label="X (Twitter)">
+                <i class="fab fa-x-twitter"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="Telegram">
+                <i class="fab fa-telegram"></i>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Signup Dialog -->
+    <div id="signupOverlay" class="signup-overlay">
+        <div class="signup-dialog">
+            <button class="dialog-close" onclick="closeSignupDialog()" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3>Get Started with Inomy</h3>
+            <div class="ixp-badge">
+                <i class="fas fa-coins"></i>
+                <span>100 IXP Bonus</span>
+            </div>
+            <p class="signup-description">
+                Sign up now and earn 100 IXP points just for joining!<br>
+                Start earning rewards with every search intent.
+            </p>
+            <form class="signup-form">
+                <input type="email" class="signup-input" placeholder="Enter your email" required>
+                <div class="signup-buttons">
+                    <button type="button" class="signup-btn secondary" onclick="closeSignupDialog()">Skip</button>
+                    <button type="submit" class="signup-btn primary" onclick="handleSignup(event)">Sign Up & Earn</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        function selectCategory(category) {
+            // Update button states
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Hide all pills
+            document.querySelectorAll('.product-pills').forEach(pills => {
+                pills.classList.remove('active');
+            });
+            
+            // Show selected category pills
+            document.getElementById(`${category}-pills`).classList.add('active');
+        }
+        
+        function showChat(productName) {
+            // Store the product name for later use
+            window.selectedProduct = productName;
+            
+            // Show signup dialog first
+            showSignupDialog();
+        }
+        
+        function proceedToChat() {
+            document.getElementById('search-view').classList.add('hidden');
+            document.getElementById('chat-view').classList.add('active');
+            document.getElementById('product-name').textContent = window.selectedProduct || 'products';
+            
+            // Hide header and footer
+            document.body.classList.add('chat-active');
+            
+            // Focus on input
+            setTimeout(() => {
+                document.querySelector('.chat-input').focus();
+            }, 100);
+        }
+        
+        function showSearch() {
+            document.getElementById('chat-view').classList.remove('active');
+            document.getElementById('search-view').classList.remove('hidden');
+            
+            // Show header and footer
+            document.body.classList.remove('chat-active');
+        }
+        
+        function startNewChat() {
+            // Reset chat and go back to search
+            showSearch();
+        }
+        
+        function setActiveMenu(menuItem) {
+            // Remove active from all menu items
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Add active to clicked item
+            menuItem.classList.add('active');
+        }
+        
+        function toggleUserMenu() {
+            // Placeholder for user menu functionality
+            console.log('User menu clicked');
+        }
+        
+        function claimPoints() {
+            // Placeholder for claiming points functionality
+            console.log('Claiming points...');
+            // You could show a success message, update the UI, etc.
+        }
+        
+        function fillInput(text) {
+            document.querySelector('.chat-input').value = text;
+            document.querySelector('.chat-input').focus();
+        }
+        
+        function sendChatMessage() {
+            const input = document.querySelector('.chat-input');
+            const message = input.value.trim();
+            
+            if (message) {
+                // Here you would handle sending the message
+                console.log('Sending message:', message);
+                input.value = '';
+            }
+        }
+        
+        function handleChatKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendChatMessage();
+            }
+        }
+        
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdownMenu');
+            dropdown.classList.toggle('show');
+        }
+        
+        // Close dropdown when clicking outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.header-icon') && !event.target.matches('.fas')) {
+                const dropdowns = document.getElementsByClassName('dropdown-content');
+                for (let i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+        
+        function showSignupDialog() {
+            document.getElementById('signupOverlay').classList.add('show');
+        }
+        
+        function closeSignupDialog() {
+            document.getElementById('signupOverlay').classList.remove('show');
+            // Proceed to chat after closing
+            proceedToChat();
+        }
+        
+        function handleSignup(event) {
+            event.preventDefault();
+            const email = document.querySelector('.signup-input').value;
+            
+            if (email) {
+                // Here you would typically send the email to your backend
+                console.log('Signing up user:', email);
+                
+                // Close dialog and proceed to chat
+                document.getElementById('signupOverlay').classList.remove('show');
+                proceedToChat();
+            }
+        }
+    </script>
+</body>
+</html>
