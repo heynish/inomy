@@ -1,0 +1,4425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inomy - Shop Smarter, Save Time</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Bebas+Neue&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(180deg, #fafafa 0%, #ffffff 50%, #f5f5f5 100%);
+            color: #0a0a0a;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            padding: 20px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 32px;
+            font-weight: 400;
+            background: linear-gradient(90deg, #000000 0%, #434343 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-family: 'Outfit', sans-serif;
+            color: #2a2a2a;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 14px;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #000000;
+            transform: translateY(-1px);
+        }
+
+        .header-btn {
+            font-family: 'Outfit', sans-serif;
+            padding: 12px 28px;
+            background: #000000;
+            border: none;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .header-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            margin-top: 100px;
+            padding: 60px 60px 100px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            min-height: calc(100vh - 80px);
+        }
+
+        .hero-content {
+            animation: slideInLeft 0.8s ease;
+        }
+
+        .hero-badge {
+            font-family: 'Outfit', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #000000;
+            margin-bottom: 32px;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.02); opacity: 0.9; }
+        }
+
+        .hero-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 88px;
+            font-weight: 400;
+            line-height: 0.95;
+            color: #0a0a0a;
+            margin-bottom: 32px;
+            letter-spacing: -0.04em;
+            font-style: italic;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-title::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.6) 50%,
+                transparent 100%
+            );
+            animation: shine 3s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        @keyframes floatUpDown {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .gradient-text {
+            font-family: 'Outfit', sans-serif;
+            font-style: normal;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            color: #6366f1;
+        }
+
+        .hero-subtitle {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 19px;
+            color: #4a4a4a;
+            line-height: 1.7;
+            margin-bottom: 24px;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            max-width: 540px;
+        }
+
+        .hero-features {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .hero-feature-pill {
+            font-family: 'Outfit', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #2a2a2a;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-feature-pill i {
+            font-size: 12px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .btn-primary {
+            font-family: 'Outfit', sans-serif;
+            padding: 18px 48px;
+            background: #000000;
+            border: 2px solid #000000;
+            border-radius: 100px;
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: none;
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: #000000;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            font-family: 'Outfit', sans-serif;
+            padding: 18px 48px;
+            background: transparent;
+            border: 2px solid #000000;
+            border-radius: 100px;
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            color: #000000;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-secondary:hover {
+            background: #000000;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* Demo Interface */
+        .hero-illustration {
+            position: relative;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .demo-workspace {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            height: 500px;
+        }
+
+        /* Points Badge - Floating at top */
+        .demo-points-floating {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.4);
+            z-index: 10;
+            opacity: 0;
+            transform: translateY(-20px) scale(0.8);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .demo-points-floating.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            animation: floatUpDownPoints 2s ease-in-out infinite, pointsGlow 2s ease-in-out infinite;
+        }
+
+        .demo-points-floating.pulse {
+            animation: pointsPulse 0.6s ease;
+        }
+
+        @keyframes pointsPulse {
+            0% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-5px) scale(1.1); box-shadow: 0 20px 50px rgba(16, 185, 129, 0.6); }
+            100% { transform: translateY(0) scale(1); }
+        }
+
+        @keyframes floatUpDownPoints {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-10px) scale(1);
+            }
+        }
+
+        @keyframes pointsGlow {
+            0%, 100% {
+                box-shadow: 0 15px 40px rgba(16, 185, 129, 0.4);
+            }
+            50% {
+                box-shadow: 0 15px 60px rgba(16, 185, 129, 0.8), 0 0 30px rgba(16, 185, 129, 0.6);
+            }
+        }
+
+        /* Chat Input - Floating */
+        .demo-chat-floating {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            z-index: 5;
+        }
+
+        .demo-input {
+            width: 100%;
+            padding: 16px 50px 16px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            color: #374151;
+            background: #f9fafb;
+            outline: none;
+        }
+
+        .demo-send-btn {
+            position: absolute;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .demo-send-btn:hover {
+            background: linear-gradient(135deg, #5b21b6 0%, #7c3aed 100%);
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+        }
+
+        .demo-send-btn.clicked {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            transform: translateY(-50%) scale(0.9);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+        }
+
+        .demo-send-btn.pulse {
+            animation: btnPulse 0.4s ease;
+        }
+
+        @keyframes btnPulse {
+            0% { transform: translateY(-50%) scale(1); }
+            50% { transform: translateY(-50%) scale(1.2); }
+            100% { transform: translateY(-50%) scale(1); }
+        }
+
+        /* Product Cards - Floating horizontally */
+        .demo-product {
+            position: absolute;
+            display: flex;
+            gap: 16px;
+            padding: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            width: 320px;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            opacity: 0;
+            transform: translateY(30px) scale(0.9);
+        }
+
+        .demo-product.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .demo-product.show.animate-in {
+            animation: productSlideIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes productSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-100px) scale(0.9);
+                transform-origin: top center;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(10px) scale(1);
+                box-shadow: 0 15px 40px rgba(99, 102, 241, 0.15);
+            }
+            70% {
+                transform: translateY(-5px) scale(1);
+            }
+            85% {
+                transform: translateY(2px) scale(1);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                box-shadow: 0 15px 40px rgba(99, 102, 241, 0.15);
+            }
+        }
+
+        .demo-product.show:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(99, 102, 241, 0.2);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .demo-product-1 {
+            top: 180px;
+            left: 0;
+            z-index: 4;
+        }
+
+        .demo-product-2 {
+            top: 250px;
+            right: 0;
+            z-index: 3;
+        }
+
+        .demo-product-3 {
+            top: 320px;
+            left: 50px;
+            z-index: 2;
+        }
+
+        .demo-product-image {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .demo-product-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .demo-product-name {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .demo-product-price {
+            font-family: 'Outfit', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 4px;
+        }
+
+        .demo-product-rating {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            color: #6b7280;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .demo-product-store {
+            font-family: 'Outfit', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Connecting Lines */
+        .demo-connection {
+            position: absolute;
+            width: 2px;
+            background: linear-gradient(180deg, #e5e7eb 0%, transparent 100%);
+            z-index: 1;
+        }
+
+        .connection-1 {
+            top: 140px;
+            left: 160px;
+            height: 60px;
+        }
+
+        .connection-2 {
+            top: 140px;
+            right: 160px;
+            height: 130px;
+        }
+
+        .connection-3 {
+            top: 140px;
+            left: 210px;
+            height: 200px;
+        }
+
+
+        /* Animations */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+                filter: brightness(1);
+            }
+            50% {
+                transform: translateY(-15px) scale(1.05);
+                filter: brightness(1.1);
+            }
+        }
+
+        @keyframes float-dot {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateY(-30px) scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        /* How It Works Section */
+        .how-it-works-section {
+            padding: 100px 60px;
+            background: #f8f9ff;
+            margin-top: -40px;
+        }
+
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 60px;
+            position: relative;
+        }
+
+        .step-left {
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            width: 120px;
+        }
+
+        .step-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 160px;
+            font-weight: 400;
+            color: rgba(0, 0, 0, 0.06);
+            line-height: 1;
+            user-select: none;
+        }
+
+        .step-content {
+            flex: 1;
+            padding-top: 40px;
+        }
+
+        .step-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 32px;
+            font-weight: 600;
+            color: #0a0a0a;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .step-description {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 18px;
+            color: #4a4a4a;
+            line-height: 1.7;
+            letter-spacing: -0.01em;
+        }
+
+        /* Responsive for mobile */
+        @media (max-width: 768px) {
+            .step-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .step-left {
+                width: 100%;
+            }
+
+            .step-number {
+                font-size: 120px;
+            }
+
+            .step-icon {
+                top: 40px;
+            }
+
+            .step-content {
+                padding-top: 20px;
+            }
+
+            .step-title {
+                font-size: 28px;
+            }
+
+            .step-description {
+                font-size: 16px;
+            }
+        }
+
+        /* Bottom CTA Section */
+        .bottom-cta-section {
+            padding: 120px 60px;
+            background: #f8f9ff;
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 56px;
+            font-weight: 400;
+            font-style: italic;
+            color: #0a0a0a;
+            margin-bottom: 24px;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        .cta-description {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 20px;
+            color: #4a4a4a;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cta-btn {
+            padding: 18px 48px;
+            font-size: 17px;
+            min-width: 200px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #000000;
+            color: #ffffff;
+            padding: 80px 60px 40px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 80px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .footer-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 32px;
+            font-weight: 400;
+            color: #ffffff;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .footer-tagline {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 60px;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .footer-heading {
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        .footer-link {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            line-height: 1.5;
+        }
+
+        .footer-link:hover {
+            color: #ffffff;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-copyright {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .footer-links {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .bottom-cta-section {
+                padding: 80px 30px;
+            }
+
+            .cta-title {
+                font-size: 42px;
+            }
+
+            .cta-description {
+                font-size: 18px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .cta-btn {
+                width: 100%;
+            }
+
+            .footer {
+                padding: 60px 30px 30px;
+            }
+
+            .footer-links {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 30px;
+                text-align: center;
+            }
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 100px 60px;
+            background: white;
+            border-radius: 40px 40px 0 0;
+            margin-top: -40px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Instrument Serif', serif;
+            font-size: 56px;
+            font-weight: 400;
+            font-style: italic;
+            color: #0a0a0a;
+            margin-bottom: 80px;
+            letter-spacing: -0.03em;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            padding: 48px 40px;
+            background: #ffffff;
+            border-radius: 24px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+            border-color: rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-icon {
+            width: 72px;
+            height: 72px;
+            background: #000000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 28px;
+            font-size: 28px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .feature-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: #0a0a0a;
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+
+        .feature-description {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            color: #5a5a5a;
+            line-height: 1.7;
+            letter-spacing: -0.01em;
+        }
+
+        /* Rewards Section */
+        .rewards-section {
+            padding: 100px 60px;
+            background: linear-gradient(180deg, #f8f9ff 0%, #ffffff 100%);
+        }
+
+        .rewards-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .rewards-intro {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 18px;
+            color: #4a4a4a;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 60px;
+            line-height: 1.6;
+        }
+
+        .rewards-visual {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .rewards-cycle {
+            margin-bottom: 80px;
+            padding: 40px 0;
+        }
+
+        .cycle-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            line-height: 1.2;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .cycle-word {
+            display: inline-block;
+            transition: all 0.3s ease;
+            color: #0a0a0a;
+        }
+
+        .cycle-arrow {
+            font-size: 20px;
+            color: #6366f1;
+        }
+
+        .cycle-word:hover {
+            transform: scale(1.1);
+            text-shadow: 0 0 20px currentColor;
+        }
+
+        .rewards-numbers {
+            display: flex;
+            justify-content: center;
+            gap: 120px;
+        }
+
+        .number-stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .stat-desc {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            padding: 100px 60px;
+            background: linear-gradient(180deg, #f8f9ff 0%, #ffffff 100%);
+            overflow: hidden;
+        }
+
+        .reviews-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .reviews-carousel {
+            position: relative;
+            margin-top: 60px;
+        }
+
+        .review-slider {
+            position: relative;
+            height: 250px;
+            perspective: 1000px;
+        }
+
+        .review-slide {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        .review-slide.active {
+            transform: translateX(-50%);
+            opacity: 1;
+            z-index: 10;
+            pointer-events: auto;
+        }
+
+        .review-slide.prev {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+
+        .review-slide.next {
+            transform: translateX(0%);
+            opacity: 0;
+        }
+
+        .review-content {
+            background: transparent;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .review-stars {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 24px;
+            color: #f59e0b;
+            font-size: 20px;
+        }
+
+        .review-quote {
+            font-family: 'Instrument Serif', serif;
+            font-size: 24px;
+            font-style: italic;
+            color: #0a0a0a;
+            line-height: 1.4;
+            margin: 0 0 32px 0;
+            position: relative;
+        }
+
+        .review-quote::before {
+            content: '"';
+            font-size: 60px;
+            color: #6366f1;
+            position: absolute;
+            top: -10px;
+            left: -20px;
+            font-family: 'Instrument Serif', serif;
+        }
+
+        .review-quote::after {
+            content: '"';
+            font-size: 60px;
+            color: #6366f1;
+            position: absolute;
+            bottom: -40px;
+            right: -20px;
+            font-family: 'Instrument Serif', serif;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .author-avatar {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .author-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #0a0a0a;
+        }
+
+        .author-role {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 40px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(99, 102, 241, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: #6366f1;
+            transform: scale(1.2);
+        }
+
+        .dot:hover {
+            background: #6366f1;
+            transform: scale(1.1);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 100px 60px;
+            background: linear-gradient(180deg, #f8f9ff 0%, #ffffff 100%);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .faq-question {
+            padding: 24px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #f8fafc;
+        }
+
+        .faq-question h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #0a0a0a;
+            margin: 0;
+        }
+
+        .faq-question i {
+            color: #6366f1;
+            font-size: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 32px 24px;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+            animation: fadeInDown 0.3s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .faq-answer p {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            color: #4a4a4a;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* App Page */
+        .app-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #fafafa;
+            z-index: 9999;
+            display: none;
+            flex-direction: column;
+        }
+
+        .app-page.active {
+            display: flex;
+        }
+
+        /* App Header */
+        .app-header {
+            background: white;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            padding: 16px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .app-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28px;
+            font-weight: 400;
+            background: linear-gradient(90deg, #000000 0%, #434343 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .app-header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .app-new-chat-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #000;
+            color: white;
+            border: none;
+            border-radius: 100px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .app-new-chat-btn:hover {
+            background: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .app-new-chat-btn i {
+            font-size: 12px;
+        }
+
+        .app-ixp-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border-radius: 100px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+        }
+
+        .app-ixp-unclaimed {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .app-ixp-unclaimed:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4);
+        }
+
+        .app-icon-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-size: 16px;
+            transition: all 0.2s ease;
+        }
+
+        .app-icon-btn:hover {
+            background: rgba(0, 0, 0, 0.1);
+            transform: scale(1.05);
+        }
+
+        .app-user-menu {
+            position: relative;
+        }
+
+        .app-user-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: transparent;
+            border-radius: 50%;
+            cursor: pointer;
+            padding: 0;
+            transition: all 0.2s ease;
+        }
+
+        .app-user-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .app-user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .app-dropdown {
+            position: absolute;
+            top: 55px;
+            right: 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            min-width: 240px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.2s ease;
+            z-index: 1000;
+        }
+
+        .app-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .app-dropdown-header {
+            padding: 16px;
+        }
+
+        .app-dropdown-user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .app-dropdown-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+        }
+
+        .app-dropdown-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: #0a0a0a;
+        }
+
+        .app-dropdown-email {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 6px;
+        }
+
+        .app-dropdown-wallet {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: #999;
+            padding: 4px 8px;
+            background: rgba(0, 0, 0, 0.03);
+            border-radius: 6px;
+            margin-top: 6px;
+        }
+
+        .app-dropdown-wallet i {
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #999;
+        }
+
+        .app-dropdown-wallet i:hover {
+            color: #6366f1;
+            transform: scale(1.1);
+        }
+
+        .app-dropdown-divider {
+            height: 1px;
+            background: rgba(0, 0, 0, 0.08);
+            margin: 8px 0;
+        }
+
+        .app-dropdown-item {
+            width: 100%;
+            padding: 12px 16px;
+            border: none;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+        }
+
+        .app-dropdown-item:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .app-dropdown-item i {
+            font-size: 16px;
+            color: #666;
+        }
+
+        /* Chat Container */
+        .app-chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .app-chat-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 32px;
+            overflow: hidden;
+        }
+
+        .app-chat-container.split-view .app-chat-section {
+            max-width: 50%;
+            flex: 0 0 50%;
+            border-right: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .app-results-section {
+            flex: 0 0 50%;
+            display: none;
+            flex-direction: column;
+            padding: 40px 32px;
+            overflow-y: auto;
+            background: #fafafa;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .app-results-section::-webkit-scrollbar {
+            display: none;
+        }
+
+        .app-chat-container.split-view .app-results-section {
+            display: flex;
+        }
+
+        /* Mobile Chat Toggle Button */
+        .mobile-chat-toggle {
+            display: none;
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 14px 28px;
+            background: #000;
+            color: white;
+            border: none;
+            border-radius: 100px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .mobile-chat-toggle:hover {
+            background: #333;
+        }
+
+        @media (max-width: 768px) {
+            .app-chat-container.split-view .app-chat-section {
+                display: none;
+            }
+
+            .app-chat-container.split-view .app-results-section {
+                flex: 1;
+                max-width: 100%;
+            }
+
+            .app-chat-container.split-view .mobile-chat-toggle {
+                display: flex;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .app-header {
+                padding: 16px 20px;
+            }
+
+            .app-header-right {
+                gap: 8px;
+            }
+
+            .app-ixp-pill {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+
+            .app-logo {
+                font-size: 24px;
+            }
+
+            .app-chat-section {
+                padding: 0 20px;
+            }
+
+            .app-results-section {
+                padding: 20px 16px;
+            }
+
+            .app-welcome-title {
+                font-size: 32px;
+            }
+
+            .app-categories {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .app-category-btn {
+                justify-content: center;
+            }
+
+            .chat-results-scroll {
+                gap: 12px;
+            }
+
+            .chat-result-card {
+                flex: 0 0 240px;
+            }
+        }
+
+        .app-chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 40px 0;
+            display: flex;
+            flex-direction: column;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .app-chat-messages::-webkit-scrollbar {
+            display: none;
+        }
+
+        .app-welcome {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 100%;
+        }
+
+        .app-welcome-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 48px;
+            font-weight: 400;
+            font-style: italic;
+            color: #0a0a0a;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .app-categories {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .app-categories-text {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            color: #666;
+        }
+
+        .app-category-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: white;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 100px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: #0a0a0a;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .app-category-btn:hover {
+            border-color: #6366f1;
+            background: #f8f9ff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+        }
+
+        .app-category-btn i {
+            font-size: 16px;
+            color: #6366f1;
+        }
+
+        .app-unclaimed-banner {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: white;
+            border-radius: 100px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            box-shadow: 0 4px 16px rgba(251, 191, 36, 0.3);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 24px;
+        }
+
+        .app-unclaimed-banner:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
+        }
+
+        .app-unclaimed-banner i:first-child {
+            font-size: 16px;
+        }
+
+        .app-unclaimed-banner i:last-child {
+            font-size: 12px;
+        }
+
+        .app-unclaimed-banner strong {
+            font-weight: 700;
+        }
+
+        .app-chat-input-centered {
+            max-width: 700px;
+            width: 100%;
+            margin: 32px auto;
+        }
+
+        .app-suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            max-width: 700px;
+            margin-top: 24px;
+        }
+
+        .app-suggestion-chip {
+            padding: 12px 20px;
+            background: white;
+            border: 2px solid rgba(0, 0, 0, 0.08);
+            border-radius: 100px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        .app-suggestion-chip:hover {
+            border-color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .app-suggestion-chip i {
+            font-size: 16px;
+            color: #6366f1;
+        }
+
+        /* Chat Input */
+        .app-chat-input-container {
+            padding: 20px 0 32px;
+            background: #fafafa;
+        }
+
+        .app-chat-input-wrapper {
+            position: relative;
+            background: white;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            padding: 16px 60px 16px 20px;
+            transition: all 0.2s ease;
+        }
+
+        .app-chat-input-wrapper:focus-within {
+            border-color: #000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .app-chat-input {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            color: #0a0a0a;
+            resize: none;
+            max-height: 150px;
+            background: transparent;
+            line-height: 1.5;
+        }
+
+        .app-chat-input::placeholder {
+            color: #999;
+        }
+
+        .app-chat-send {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: #000;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.2s ease;
+        }
+
+        .app-chat-send:hover {
+            background: #333;
+            transform: scale(1.05);
+        }
+
+        .app-chat-send:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .app-chat-footer {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        /* Chat Messages */
+        .chat-message {
+            margin-bottom: 24px;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chat-message-user {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .chat-message-user .chat-bubble {
+            background: #000;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 18px;
+            max-width: 70%;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .chat-message-assistant {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .chat-message-assistant .chat-bubble {
+            background: transparent;
+            padding: 0;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #0a0a0a;
+        }
+
+        .chat-loading {
+            display: flex;
+            gap: 6px;
+            padding: 12px 0;
+        }
+
+        .chat-loading span {
+            width: 8px;
+            height: 8px;
+            background: #999;
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+
+        .chat-loading span:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+
+        .chat-loading span:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+
+        @keyframes bounce {
+            0%, 80%, 100% {
+                transform: scale(0);
+            }
+            40% {
+                transform: scale(1);
+            }
+        }
+
+        .chat-product-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .chat-product-card {
+            background: white;
+            border: 2px solid rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            padding: 16px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .chat-product-card:hover {
+            border-color: #6366f1;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.15);
+        }
+
+        .chat-product-card-name {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #0a0a0a;
+            margin-bottom: 8px;
+        }
+
+        .chat-product-card-price {
+            font-family: 'Outfit', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 6px;
+        }
+
+        .chat-product-card-rating {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* Question Buttons */
+        .chat-question-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .chat-question-btn {
+            padding: 12px 20px;
+            background: white;
+            border: 2px solid rgba(0, 0, 0, 0.08);
+            border-radius: 100px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .chat-question-btn:hover {
+            border-color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-question-btn.selected {
+            background: #6366f1;
+            color: white;
+            border-color: #6366f1;
+        }
+
+        /* Inline Results in Chat */
+        .chat-results-container {
+            margin-top: 16px;
+        }
+
+        .chat-results-scroll {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            padding-bottom: 12px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .chat-results-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .chat-result-card {
+            flex: 0 0 280px;
+            background: white;
+            border: 2px solid rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .chat-result-card:hover {
+            border-color: #6366f1;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.15);
+        }
+
+        .open-results-btn {
+            margin-top: 16px;
+            padding: 12px 24px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 100px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .open-results-btn:hover {
+            background: #5558e3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Results Section */
+        .results-header {
+            margin-bottom: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .results-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #0a0a0a;
+            margin-bottom: 8px;
+        }
+
+        .results-subtitle {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .results-close-btn {
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 16px;
+            transition: all 0.2s ease;
+        }
+
+        .results-close-btn:hover {
+            background: rgba(0, 0, 0, 0.1);
+            color: #000;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .result-card {
+            background: white;
+            border: 2px solid rgba(0, 0, 0, 0.08);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.2s ease;
+        }
+
+        .result-card:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .result-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .result-card-info {
+            flex: 1;
+        }
+
+        .result-card-name {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #0a0a0a;
+            margin-bottom: 8px;
+        }
+
+        .result-card-price {
+            font-family: 'Outfit', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 8px;
+        }
+
+        .result-card-rating {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .result-card-store {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            color: #999;
+        }
+
+        .result-card-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .result-action-btn {
+            width: 36px;
+            height: 36px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #666;
+            transition: all 0.2s ease;
+        }
+
+        .result-action-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .result-action-btn.thumbs-up:hover,
+        .result-action-btn.thumbs-up.active {
+            background: #10b981;
+            border-color: #10b981;
+            color: white;
+        }
+
+        .result-action-btn.thumbs-down:hover,
+        .result-action-btn.thumbs-down.active {
+            background: #ef4444;
+            border-color: #ef4444;
+            color: white;
+        }
+
+        .result-action-btn.save:hover,
+        .result-action-btn.save.active {
+            background: #6366f1;
+            border-color: #6366f1;
+            color: white;
+        }
+
+        .result-card-details {
+            padding-top: 16px;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #4a4a4a;
+        }
+
+        /* Saved Panel */
+        .saved-overlay {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            z-index: 10002;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+        }
+
+        .saved-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .saved-panel {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 80%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .saved-overlay.active .saved-panel {
+            transform: translateX(0);
+        }
+
+        .saved-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 32px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .saved-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 28px;
+            font-weight: 400;
+            font-style: italic;
+            color: #0a0a0a;
+        }
+
+        .saved-close {
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 16px;
+            transition: all 0.2s ease;
+        }
+
+        .saved-close:hover {
+            background: rgba(0, 0, 0, 0.1);
+            color: #000;
+            transform: rotate(90deg);
+        }
+
+        .saved-tabs {
+            display: flex;
+            gap: 0;
+            padding: 0 32px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .saved-tab {
+            flex: 1;
+            padding: 16px 24px;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .saved-tab:hover {
+            color: #000;
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        .saved-tab.active {
+            color: #6366f1;
+            border-bottom-color: #6366f1;
+        }
+
+        .saved-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 32px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .saved-content::-webkit-scrollbar {
+            display: none;
+        }
+
+        .saved-empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 100%;
+            gap: 16px;
+        }
+
+        .saved-empty i {
+            font-size: 48px;
+            color: #e5e7eb;
+        }
+
+        .saved-empty p {
+            font-family: 'Outfit', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #0a0a0a;
+            margin: 0;
+        }
+
+        .saved-empty span {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            color: #999;
+            max-width: 250px;
+        }
+
+        .saved-items-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .saved-item-card {
+            background: white;
+            border: 2px solid rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            padding: 16px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .saved-item-card:hover {
+            border-color: #6366f1;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1);
+        }
+
+        .saved-item-name {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: #0a0a0a;
+            margin-bottom: 8px;
+        }
+
+        .saved-item-price {
+            font-family: 'Outfit', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 6px;
+        }
+
+        .saved-item-meta {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .saved-overlay,
+            .saved-panel {
+                width: 100%;
+            }
+
+            .saved-header,
+            .saved-content {
+                padding: 20px 24px;
+            }
+
+            .saved-tabs {
+                padding: 0 24px;
+            }
+        }
+
+        /* Products Dialog */
+        .products-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10001;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .products-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .products-dialog {
+            background: white;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 700px;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .products-overlay.active .products-dialog {
+            transform: scale(1) translateY(0);
+        }
+
+        .products-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 32px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .products-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #0a0a0a;
+        }
+
+        .products-close {
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 16px;
+            transition: all 0.2s ease;
+        }
+
+        .products-close:hover {
+            background: rgba(0, 0, 0, 0.1);
+            color: #000;
+            transform: rotate(90deg);
+        }
+
+        .products-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 32px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 16px;
+        }
+
+        .product-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background: #f8f9ff;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .product-item:hover {
+            background: #f0f1ff;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.15);
+        }
+
+        .product-item i {
+            font-size: 36px;
+            color: #6366f1;
+            margin-bottom: 12px;
+        }
+
+        .product-item-name {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: #0a0a0a;
+        }
+
+        /* Login Dialog */
+        .login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .login-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .login-dialog {
+            background: white;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 480px;
+            position: relative;
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .login-overlay.active .login-dialog {
+            transform: scale(1) translateY(0);
+        }
+
+        .login-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 16px;
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+
+        .login-close:hover {
+            background: rgba(0, 0, 0, 0.1);
+            color: #000;
+            transform: rotate(90deg);
+        }
+
+        .login-content {
+            padding: 48px 40px;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .login-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 36px;
+            font-weight: 400;
+            background: linear-gradient(90deg, #000000 0%, #434343 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .login-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 28px;
+            font-weight: 400;
+            font-style: italic;
+            color: #0a0a0a;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .login-subtitle {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .login-reward-banner {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 32px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+            animation: loginRewardPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes loginRewardPulse {
+            0%, 100% {
+                box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+            }
+            50% {
+                box-shadow: 0 8px 32px rgba(16, 185, 129, 0.5);
+            }
+        }
+
+        .login-reward-banner i {
+            font-size: 20px;
+        }
+
+        .login-reward-banner strong {
+            font-weight: 700;
+        }
+
+        .login-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .login-btn {
+            font-family: 'Outfit', sans-serif;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            border: 2px solid transparent;
+        }
+
+        .login-btn-primary {
+            background: #000000;
+            color: white;
+            border-color: #000000;
+        }
+
+        .login-btn-primary:hover {
+            background: transparent;
+            color: #000000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .login-btn-secondary {
+            background: white;
+            color: #000000;
+            border-color: #e5e7eb;
+        }
+
+        .login-btn-secondary:hover {
+            border-color: #000000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-features {
+            display: flex;
+            justify-content: space-around;
+            gap: 16px;
+            padding: 24px 0;
+            border-top: 1px solid #e5e7eb;
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 24px;
+        }
+
+        .login-feature {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+
+        .login-feature i {
+            font-size: 20px;
+            color: #000000;
+        }
+
+        .login-terms {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            color: #999;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .login-terms a {
+            color: #6366f1;
+            text-decoration: none;
+        }
+
+        .login-terms a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-section {
+                grid-template-columns: 1fr;
+                padding: 60px 40px;
+                gap: 60px;
+            }
+
+            .hero-illustration {
+                height: 400px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .shape {
+                transform: scale(0.8);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 20px 30px;
+            }
+
+            .nav-menu {
+                gap: 20px;
+            }
+
+            .nav-link {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 56px;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+
+            .features-section {
+                padding: 60px 30px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">inomy</div>
+        <nav class="nav-menu">
+            <button class="header-btn">Get Started</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-sparkles"></i>
+                <span>Beta Now Live</span>
+            </div>
+            <h1 class="hero-title">
+                Shop in Minutes,<br>
+                <span class="gradient-text">Not Hours</span>
+            </h1>
+            <p class="hero-subtitle">
+                Meet the privacy-first personal shopping intelligence. No ads, no bias — just answers, and rewards.
+            </p>
+            <div class="hero-buttons">
+                <button class="btn-primary">Start Shopping</button>
+                <button class="btn-secondary">How It Works</button>
+            </div>
+        </div>
+
+        <div class="hero-illustration">
+            <div class="demo-workspace">
+                <!-- Points Badge at Top -->
+                <div class="demo-points-floating">
+                    <i class="fas fa-coins"></i>
+                    +100 IXP Earned
+                </div>
+
+                <!-- Chat Input Box -->
+                <div class="demo-chat-floating">
+                    <div style="position: relative;">
+                        <input type="text" class="demo-input typing-demo" value="" data-text="Best laptop for video editing under $2000" readonly>
+                        <button class="demo-send-btn">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Connecting Lines -->
+                <div class="demo-connection connection-1"></div>
+                <div class="demo-connection connection-2"></div>
+                <div class="demo-connection connection-3"></div>
+
+                <!-- Floating Product Cards -->
+                <div class="demo-product demo-product-1">
+                    <div class="demo-product-image"></div>
+                    <div class="demo-product-info">
+                        <div class="demo-product-name">MacBook Pro 16" M3</div>
+                        <div class="demo-product-price">$1,899</div>
+                        <div class="demo-product-rating">⭐ 4.8 (2.1k reviews)</div>
+                        <div class="demo-product-store">Apple Store</div>
+                    </div>
+                </div>
+
+                <div class="demo-product demo-product-2">
+                    <div class="demo-product-image"></div>
+                    <div class="demo-product-info">
+                        <div class="demo-product-name">Dell XPS 15 OLED</div>
+                        <div class="demo-product-price">$1,699</div>
+                        <div class="demo-product-rating">⭐ 4.6 (1.8k reviews)</div>
+                        <div class="demo-product-store">Best Buy</div>
+                    </div>
+                </div>
+
+                <div class="demo-product demo-product-3">
+                    <div class="demo-product-image"></div>
+                    <div class="demo-product-info">
+                        <div class="demo-product-name">ASUS ProArt StudioBook</div>
+                        <div class="demo-product-price">$1,599</div>
+                        <div class="demo-product-rating">⭐ 4.5 (956 reviews)</div>
+                        <div class="demo-product-store">Amazon</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works-section" id="how-it-works">
+        <h2 class="section-title">How It <span class="gradient-text">Works</span></h2>
+        <div class="steps-container">
+            <div class="step-item">
+                <div class="step-left">
+                    <div class="step-number">01</div>
+                </div>
+                <div class="step-content">
+                    <h3 class="step-title">Chat Your Intent</h3>
+                    <p class="step-description">
+                        Tell our AI what you're looking for in natural language. "I need a laptop for video editing under $2000" — that simple.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-left">
+                    <div class="step-number">02</div>
+                </div>
+                <div class="step-content">
+                    <h3 class="step-title">Get Smart Results</h3>
+                    <p class="step-description">
+                        Our neutral AI searches across sellers and presents the best matches with transparent pricing. No ads, no bias — just results.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-left">
+                    <div class="step-number">03</div>
+                </div>
+                <div class="step-content">
+                    <h3 class="step-title">Buy & Earn Points</h3>
+                    <p class="step-description">
+                        Purchase directly from seller websites while earning IXP points for your shopping activity. You decide where to buy.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews-section">
+        <div class="reviews-container">
+            <h2 class="section-title">What Users <span class="gradient-text">Say</span></h2>
+
+            <div class="reviews-carousel">
+                <div class="review-slider">
+                    <div class="review-slide active">
+                        <div class="review-content">
+                            <div class="review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <blockquote class="review-quote">
+                                "I was tired of sponsored results and fake reviews. Inomy shows me real products from real sellers, and I actually earn money while shopping. It's a game-changer."
+                            </blockquote>
+                            <div class="review-author">
+                                <div class="author-avatar">
+                                    <span>SM</span>
+                                </div>
+                                <div class="author-info">
+                                    <div class="author-name">Sarah Martinez</div>
+                                    <div class="author-role">Tech Professional</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-slide">
+                        <div class="review-content">
+                            <div class="review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <blockquote class="review-quote">
+                                "Used to spend days comparing laptops across different sites. Inomy found the perfect match in 5 minutes, saved me $300, and I earned points doing it."
+                            </blockquote>
+                            <div class="review-author">
+                                <div class="author-avatar">
+                                    <span>DJ</span>
+                                </div>
+                                <div class="author-info">
+                                    <div class="author-name">David Johnson</div>
+                                    <div class="author-role">Creative Director</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-slide">
+                        <div class="review-content">
+                            <div class="review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <blockquote class="review-quote">
+                                "The IXP rewards system is brilliant. I've already earned $75 in gift cards just from my regular shopping. Plus the AI recommendations are spot-on."
+                            </blockquote>
+                            <div class="review-author">
+                                <div class="author-avatar">
+                                    <span>EC</span>
+                                </div>
+                                <div class="author-info">
+                                    <div class="author-name">Emily Chen</div>
+                                    <div class="author-role">Product Manager</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-dots">
+                    <span class="dot active" data-slide="0"></span>
+                    <span class="dot" data-slide="1"></span>
+                    <span class="dot" data-slide="2"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <h2 class="section-title">Why Choose <span class="gradient-text">Inomy</span></h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3 class="feature-title">Save Hours, Not Just Money</h3>
+                <p class="feature-description">
+                    Stop spending 5+ hours researching products. Our neutral engine cuts through the noise to find what you actually need in minutes.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-hand-holding-usd"></i>
+                </div>
+                <h3 class="feature-title">Get Paid for Your Attention</h3>
+                <p class="feature-description">
+                    Advertisers pay up to $10+ for your shopping intent. Unlike big tech, we share this value directly with you through IXP rewards.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-balance-scale"></i>
+                </div>
+                <h3 class="feature-title">Neutral Discovery Engine</h3>
+                <p class="feature-description">
+                    No algorithmic bias, no sponsored placements. Just honest recommendations powered by privacy-first technology you can trust.
+                </p>
+            </div>
+        </div>
+
+        <!-- Protocol Info Section -->
+        <div style="max-width: 800px; margin: 80px auto 0; text-align: center; padding: 0 20px;">
+            <h3 style="font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 600; color: #0a0a0a; margin-bottom: 20px;">
+                Built on <span class="gradient-text">Open Infrastructure</span>
+            </h3>
+            <p style="font-family: 'DM Sans', sans-serif; font-size: 16px; color: #4a4a4a; line-height: 1.7; margin-bottom: 24px;">
+                Inomy is the first application built on the Intents Protocol—an open, neutral commerce layer for the internet.
+                Think SMTP for email, but for shopping. Instead of tech giants controlling your commercial data through surveillance,
+                we're building permissionless infrastructure where you own your shopping needs and sellers bid transparently to fulfill them.
+            </p>
+            <div style="display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; margin-top: 32px;">
+                <div style="display: flex; align-items: center; gap: 12px; font-family: 'Outfit', sans-serif; font-size: 14px; color: #2a2a2a; font-weight: 500;">
+                    <i class="fas fa-shield-alt" style="color: #000000;"></i>
+                    <span>User-Owned Intent</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px; font-family: 'Outfit', sans-serif; font-size: 14px; color: #2a2a2a; font-weight: 500;">
+                    <i class="fas fa-eye-slash" style="color: #000000;"></i>
+                    <span>No Surveillance</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px; font-family: 'Outfit', sans-serif; font-size: 14px; color: #2a2a2a; font-weight: 500;">
+                    <i class="fas fa-coins" style="color: #000000;"></i>
+                    <span>Transparent Bidding</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rewards Section -->
+    <section class="rewards-section" id="rewards">
+        <div class="rewards-container">
+            <h2 class="section-title">Earn <span class="gradient-text">Rewards</span></h2>
+            <p class="rewards-intro">
+                Get paid for your shopping intent. Earn IXP points with every interaction and redeem them for real cash rewards.
+            </p>
+
+            <div class="rewards-visual">
+                <div class="rewards-cycle">
+                    <div class="cycle-text">
+                        <span class="cycle-word search">Search</span>
+                        <i class="fas fa-chevron-right cycle-arrow"></i>
+                        <span class="cycle-word find">Find</span>
+                        <i class="fas fa-chevron-right cycle-arrow"></i>
+                        <span class="cycle-word rewards">Rewards</span>
+                    </div>
+                </div>
+
+                <div class="rewards-numbers">
+                    <div class="number-stat">
+                        <div class="stat-value">10,000+</div>
+                        <div class="stat-desc">Hours Saved</div>
+                    </div>
+                    <div class="number-stat">
+                        <div class="stat-value">$180K+</div>
+                        <div class="stat-desc">Rewards Earned</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="faq-container">
+            <h2 class="section-title">Frequently Asked <span class="gradient-text">Questions</span></h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How does Inomy make money without ads?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We earn a small commission when you purchase through our platform, similar to cashback services. Instead of keeping it all, we share this value with you through IXP rewards. No ads, no bias, just transparent value sharing.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What makes Inomy different from Google Shopping?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Google Shopping shows sponsored results first. We use neutral AI that doesn't favor any seller - just finds the best match for your needs. Plus, you earn rewards for every search instead of being the product.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How quickly can I redeem my IXP points?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can redeem points starting at 1,000 IXP ($10 value). Most users reach this within their first week of active shopping. Redemptions are processed within 24-48 hours.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Is my shopping data private and secure?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely. We never sell your data to advertisers. Your shopping preferences help train our AI to serve you better, but your personal information stays private. Built on privacy-first principles.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Which stores and categories are supported?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We currently support electronics, home appliances, and tech gadgets from major retailers like Amazon, Best Buy, Target, and 500+ other stores. More categories launching soon.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How accurate are the AI recommendations?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our AI achieves 94% user satisfaction in finding the right product match. It understands context, budget constraints, and personal preferences to deliver highly relevant results without algorithmic bias.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom CTA Section -->
+    <section class="bottom-cta-section">
+        <div class="cta-container">
+            <h2 class="cta-title">Ready to Shop <span class="gradient-text">Smarter</span>?</h2>
+            <p class="cta-description">
+                Join the beta and experience neutral, AI-powered shopping that actually works for you.
+            </p>
+            <div class="cta-buttons">
+                <button class="btn-primary cta-btn">Start Shopping</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">inomy</div>
+                    <p class="footer-tagline">Shop without bias, earn rewards</p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Product</h4>
+                        <a href="#" class="footer-link">How It Works</a>
+                        <a href="#" class="footer-link">Features</a>
+                        <a href="#" class="footer-link">Beta Access</a>
+                        <a href="#" class="footer-link">Roadmap</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Protocol</h4>
+                        <a href="#" class="footer-link">Intents Protocol</a>
+                        <a href="#" class="footer-link">Documentation</a>
+                        <a href="#" class="footer-link">Developer API</a>
+                        <a href="#" class="footer-link">GitHub</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Company</h4>
+                        <a href="#" class="footer-link">About</a>
+                        <a href="#" class="footer-link">Blog</a>
+                        <a href="#" class="footer-link">Careers</a>
+                        <a href="#" class="footer-link">Contact</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Legal</h4>
+                        <a href="#" class="footer-link">Privacy Policy</a>
+                        <a href="#" class="footer-link">Terms of Service</a>
+                        <a href="#" class="footer-link">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <span>© 2025 Inomy. All rights reserved.</span>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-link" aria-label="Twitter">
+                        <i class="fab fa-x-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Discord">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- App Page (Hidden by default) -->
+    <div id="appPage" class="app-page">
+        <!-- App Header -->
+        <header class="app-header">
+            <div class="app-logo">inomy</div>
+
+            <div class="app-header-right">
+                <button class="app-new-chat-btn" onclick="startNewChat()">
+                    <i class="fas fa-plus"></i>
+                    <span>New Chat</span>
+                </button>
+
+                <div class="app-ixp-pill app-ixp-unclaimed" onclick="claimIXP()">
+                    <i class="fas fa-coins"></i>
+                    <span>150 IXP unclaimed</span>
+                    <i class="fas fa-external-link-alt" style="font-size: 11px;"></i>
+                </div>
+
+                <div class="app-ixp-pill">
+                    <i class="fas fa-coins"></i>
+                    <span id="userIXP">250 IXP</span>
+                </div>
+
+                <button class="app-icon-btn" onclick="toggleSavedItems()">
+                    <i class="fas fa-bookmark"></i>
+                </button>
+
+                <div class="app-user-menu">
+                    <button class="app-user-btn" onclick="toggleUserDropdown()">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=user" alt="User" class="app-user-avatar">
+                    </button>
+                    <div class="app-dropdown" id="userDropdown">
+                        <div class="app-dropdown-header">
+                            <div class="app-dropdown-user">
+                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=user" alt="User" class="app-dropdown-avatar">
+                                <div>
+                                    <div class="app-dropdown-name">User</div>
+                                    <div class="app-dropdown-email">user@example.com</div>
+                                    <div class="app-dropdown-wallet">
+                                        <span id="walletAddress">0x742d...5f3a</span>
+                                        <i class="fas fa-copy" onclick="copyWalletAddress(event)" title="Copy address"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="app-dropdown-divider"></div>
+                        <button class="app-dropdown-item" onclick="openRewards()">
+                            <i class="fas fa-gift"></i>
+                            <span>Rewards</span>
+                        </button>
+                        <button class="app-dropdown-item" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Chat Container -->
+        <div class="app-chat-container" id="appChatContainer">
+            <div class="app-chat-section">
+                <div class="app-chat-messages" id="chatMessages">
+                <div class="app-welcome">
+                    <h1 class="app-welcome-title">What would you like to shop for today?</h1>
+                    <div class="app-categories">
+                        <span class="app-categories-text">Currently available:</span>
+                        <button class="app-category-btn" onclick="showCategory('electronics')">
+                            <i class="fas fa-laptop"></i>
+                            Electronics
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <button class="app-category-btn" onclick="showCategory('home-appliances')">
+                            <i class="fas fa-blender"></i>
+                            Home Appliances
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+
+                    <!-- Chat Input Centered -->
+                    <div class="app-chat-input-wrapper app-chat-input-centered">
+                        <textarea
+                            id="chatInput"
+                            class="app-chat-input"
+                            placeholder="What are you looking for?"
+                            rows="1"
+                        ></textarea>
+                        <button class="app-chat-send" onclick="sendMessage()">
+                            <i class="fas fa-arrow-up"></i>
+                        </button>
+                    </div>
+
+                    <!-- Suggestions below input -->
+                    <div class="app-suggestions">
+                        <button class="app-suggestion-chip" onclick="fillChatInput('Best laptop for video editing under $2000')">
+                            <i class="fas fa-laptop"></i>
+                            Best laptop for video editing
+                        </button>
+                        <button class="app-suggestion-chip" onclick="fillChatInput('Wireless headphones with noise cancellation')">
+                            <i class="fas fa-headphones"></i>
+                            Noise cancelling headphones
+                        </button>
+                        <button class="app-suggestion-chip" onclick="fillChatInput('Gaming monitor 144hz under $500')">
+                            <i class="fas fa-desktop"></i>
+                            Gaming monitor 144hz
+                        </button>
+                        <button class="app-suggestion-chip" onclick="fillChatInput('Best phone camera under $800')">
+                            <i class="fas fa-mobile-alt"></i>
+                            Best phone camera
+                        </button>
+                    </div>
+
+                    <div class="app-chat-footer">
+                        Powered by Inomy · Earn IXP with every search
+                    </div>
+                </div>
+            </div>
+
+                <!-- Chat Input (hidden initially, shown after first message) -->
+                <div class="app-chat-input-container" id="bottomChatInput" style="display: none;">
+                    <div class="app-chat-input-wrapper">
+                        <textarea
+                            id="chatInputBottom"
+                            class="app-chat-input"
+                            placeholder="What are you looking for?"
+                            rows="1"
+                        ></textarea>
+                        <button class="app-chat-send" onclick="sendMessage()">
+                            <i class="fas fa-arrow-up"></i>
+                        </button>
+                    </div>
+                    <div class="app-chat-footer">
+                        Powered by Inomy · Earn IXP with every search
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="app-results-section" id="resultsSection">
+                <div class="results-header">
+                    <div>
+                        <h2 class="results-title">Top Results</h2>
+                        <p class="results-subtitle">Best matches based on your preferences</p>
+                    </div>
+                    <button class="results-close-btn" onclick="closeResultsPanel()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="results-grid" id="resultsGrid">
+                    <!-- Results will be added here -->
+                </div>
+
+                <!-- Mobile Chat Toggle Button -->
+                <button class="mobile-chat-toggle" onclick="closeResultsPanel()">
+                    <i class="fas fa-comments"></i>
+                    <span>Back to Chat</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Saved Panel -->
+    <div id="savedPanel" class="saved-overlay">
+        <div class="saved-panel">
+            <div class="saved-header">
+                <h2 class="saved-title">Your Saved</h2>
+                <button class="saved-close" onclick="closeSavedPanel()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="saved-tabs">
+                <button class="saved-tab active" onclick="switchSavedTab('items', this)">
+                    Items
+                </button>
+                <button class="saved-tab" onclick="switchSavedTab('chats', this)">
+                    Chats
+                </button>
+                <button class="saved-tab" onclick="switchSavedTab('intents', this)">
+                    Intents
+                </button>
+            </div>
+
+            <div class="saved-content" id="savedContent">
+                <div class="saved-empty">
+                    <i class="fas fa-bookmark"></i>
+                    <p>No saved items yet</p>
+                    <span>Save products during your search to see them here</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Products Dialog -->
+    <div id="productsDialog" class="products-overlay">
+        <div class="products-dialog">
+            <div class="products-header">
+                <h2 class="products-title" id="productsTitle">Electronics</h2>
+                <button class="products-close" onclick="closeProductsDialog()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="products-content" id="productsContent">
+                <!-- Products will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Dialog -->
+    <div id="loginDialog" class="login-overlay">
+        <div class="login-dialog">
+            <button class="login-close" onclick="closeLoginDialog()">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="login-content">
+                <div class="login-header">
+                    <div class="login-logo">inomy</div>
+                    <h2 class="login-title">Start Shopping Smarter</h2>
+                    <p class="login-subtitle">Sign in to access AI-powered shopping and earn rewards</p>
+                </div>
+
+                <div class="login-reward-banner">
+                    <i class="fas fa-gift"></i>
+                    <span>Earn <strong>100 IXP</strong> just for signing up!</span>
+                </div>
+
+                <div class="login-buttons">
+                    <button class="login-btn login-btn-primary" onclick="loginWithPrivy()">
+                        <i class="fas fa-wallet"></i>
+                        Continue with Wallet
+                    </button>
+                    <button class="login-btn login-btn-secondary" onclick="loginWithPrivy()">
+                        <i class="fas fa-envelope"></i>
+                        Continue with Email
+                    </button>
+                    <button class="login-btn login-btn-secondary" onclick="loginWithPrivy()">
+                        <i class="fab fa-google"></i>
+                        Continue with Google
+                    </button>
+                </div>
+
+                <div class="login-features">
+                    <div class="login-feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Secure & Private</span>
+                    </div>
+                    <div class="login-feature">
+                        <i class="fas fa-coins"></i>
+                        <span>Earn IXP Rewards</span>
+                    </div>
+                    <div class="login-feature">
+                        <i class="fas fa-bolt"></i>
+                        <span>AI-Powered Search</span>
+                    </div>
+                </div>
+
+                <p class="login-terms">
+                    By continuing, you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Login Dialog Functions
+        function openLoginDialog() {
+            document.getElementById('loginDialog').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLoginDialog() {
+            document.getElementById('loginDialog').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function loginWithPrivy() {
+            // TODO: Integrate Privy authentication here
+            console.log('Initiating Privy login...');
+
+            // For now, simulate login and show app page
+            closeLoginDialog();
+            showAppPage();
+        }
+
+        function showAppPage() {
+            document.getElementById('appPage').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function hideAppPage() {
+            document.getElementById('appPage').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function toggleUserDropdown() {
+            const dropdown = document.getElementById('userDropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        let savedItems = [];
+        let currentSavedTab = 'items';
+
+        function toggleSavedItems() {
+            document.getElementById('savedPanel').classList.add('active');
+            updateSavedContent(currentSavedTab);
+        }
+
+        function closeSavedPanel() {
+            document.getElementById('savedPanel').classList.remove('active');
+        }
+
+        function switchSavedTab(tab, buttonEl) {
+            currentSavedTab = tab;
+
+            // Update tab buttons
+            document.querySelectorAll('.saved-tab').forEach(btn => btn.classList.remove('active'));
+            buttonEl.classList.add('active');
+
+            // Update content
+            updateSavedContent(tab);
+        }
+
+        function updateSavedContent(tab) {
+            const content = document.getElementById('savedContent');
+
+            if (tab === 'items') {
+                if (savedItems.length === 0) {
+                    content.innerHTML = `
+                        <div class="saved-empty">
+                            <i class="fas fa-bookmark"></i>
+                            <p>No saved items yet</p>
+                            <span>Save products during your search to see them here</span>
+                        </div>
+                    `;
+                } else {
+                    content.innerHTML = `
+                        <div class="saved-items-grid">
+                            ${savedItems.map(item => `
+                                <div class="saved-item-card">
+                                    <div class="saved-item-name">${item.name}</div>
+                                    <div class="saved-item-price">${item.price}</div>
+                                    <div class="saved-item-meta">⭐ ${item.rating} • ${item.store}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                }
+            } else if (tab === 'chats') {
+                content.innerHTML = `
+                    <div class="saved-empty">
+                        <i class="fas fa-comments"></i>
+                        <p>No saved chats yet</p>
+                        <span>Your conversation history will appear here</span>
+                    </div>
+                `;
+            } else if (tab === 'intents') {
+                content.innerHTML = `
+                    <div class="saved-empty">
+                        <i class="fas fa-lightbulb"></i>
+                        <p>No saved intents yet</p>
+                        <span>Save your shopping intents for later</span>
+                    </div>
+                `;
+            }
+        }
+
+        // Close saved panel when clicking outside
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('savedPanel').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeSavedPanel();
+                }
+            });
+        });
+
+        function claimIXP() {
+            alert('Claim IXP feature coming soon!');
+        }
+
+        function showCategory(category) {
+            const categoryNames = {
+                'electronics': 'Electronics',
+                'home-appliances': 'Home Appliances'
+            };
+
+            const products = {
+                'electronics': [
+                    { name: 'Laptops', icon: 'fa-laptop' },
+                    { name: 'Smartphones', icon: 'fa-mobile-alt' },
+                    { name: 'Tablets', icon: 'fa-tablet-alt' },
+                    { name: 'Headphones', icon: 'fa-headphones' },
+                    { name: 'Monitors', icon: 'fa-desktop' },
+                    { name: 'Keyboards', icon: 'fa-keyboard' },
+                    { name: 'Mice', icon: 'fa-mouse' },
+                    { name: 'Cameras', icon: 'fa-camera' },
+                    { name: 'Speakers', icon: 'fa-volume-up' },
+                    { name: 'Gaming Consoles', icon: 'fa-gamepad' },
+                    { name: 'Smart Watches', icon: 'fa-clock' },
+                    { name: 'TVs', icon: 'fa-tv' }
+                ],
+                'home-appliances': [
+                    { name: 'Refrigerators', icon: 'fa-snowflake' },
+                    { name: 'Washing Machines', icon: 'fa-tint' },
+                    { name: 'Microwaves', icon: 'fa-microwave' },
+                    { name: 'Air Conditioners', icon: 'fa-wind' },
+                    { name: 'Vacuum Cleaners', icon: 'fa-broom' },
+                    { name: 'Coffee Makers', icon: 'fa-coffee' },
+                    { name: 'Blenders', icon: 'fa-blender' },
+                    { name: 'Toasters', icon: 'fa-bread-slice' },
+                    { name: 'Air Purifiers', icon: 'fa-fan' },
+                    { name: 'Dishwashers', icon: 'fa-sink' },
+                    { name: 'Electric Kettles', icon: 'fa-mug-hot' },
+                    { name: 'Food Processors', icon: 'fa-utensils' }
+                ]
+            };
+
+            document.getElementById('productsTitle').textContent = categoryNames[category];
+
+            const productsHTML = products[category].map(product => `
+                <div class="product-item" onclick="fillChatInput('Best ${product.name.toLowerCase()}')">
+                    <i class="fas ${product.icon}"></i>
+                    <div class="product-item-name">${product.name}</div>
+                </div>
+            `).join('');
+
+            document.getElementById('productsContent').innerHTML = `<div class="products-grid">${productsHTML}</div>`;
+            document.getElementById('productsDialog').classList.add('active');
+        }
+
+        function closeProductsDialog() {
+            document.getElementById('productsDialog').classList.remove('active');
+        }
+
+        // Close products dialog when clicking outside
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('productsDialog').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeProductsDialog();
+                }
+            });
+        });
+
+        function logout() {
+            hideAppPage();
+            document.getElementById('userDropdown').classList.remove('active');
+        }
+
+        function copyWalletAddress(event) {
+            event.stopPropagation();
+            const fullAddress = '0x742d35Cc6634C0532925a3b844Bc9e7595f5f3a';
+
+            navigator.clipboard.writeText(fullAddress).then(() => {
+                // Show copied feedback
+                const icon = event.target;
+                const originalClass = icon.className;
+                icon.className = 'fas fa-check';
+                icon.style.color = '#10b981';
+
+                setTimeout(() => {
+                    icon.className = originalClass;
+                    icon.style.color = '';
+                }, 1500);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+            });
+        }
+
+        function openRewards() {
+            document.getElementById('userDropdown').classList.remove('active');
+            alert('Rewards page coming soon!');
+        }
+
+        function startNewChat() {
+            // Clear chat messages
+            const messagesContainer = document.getElementById('chatMessages');
+            messagesContainer.innerHTML = '';
+
+            // Show welcome screen again
+            const welcome = document.querySelector('.app-welcome');
+            if (welcome) {
+                welcome.style.display = 'flex';
+                messagesContainer.appendChild(welcome);
+            } else {
+                // Recreate welcome screen if it doesn't exist
+                location.reload();
+            }
+
+            // Hide bottom chat input
+            document.getElementById('bottomChatInput').style.display = 'none';
+
+            // Close results panel if open
+            closeResultsPanel();
+
+            // Reset user preferences
+            userPreferences = {};
+
+            // Scroll to top
+            messagesContainer.scrollTop = 0;
+        }
+
+        function fillChatInput(text) {
+            const input = document.getElementById('chatInput');
+            input.value = text;
+            input.focus();
+            // Trigger send immediately
+            setTimeout(() => sendMessage(), 100);
+        }
+
+        let conversationState = 'initial';
+        let userPreferences = {};
+
+        async function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+
+            if (!message) return;
+
+            // Hide welcome screen
+            const welcome = document.querySelector('.app-welcome');
+            if (welcome) {
+                welcome.style.display = 'none';
+            }
+
+            // Show bottom chat input
+            document.getElementById('bottomChatInput').style.display = 'block';
+
+            // Get messages container
+            const messagesContainer = document.getElementById('chatMessages');
+
+            // Add user message
+            const userMessageEl = document.createElement('div');
+            userMessageEl.className = 'chat-message chat-message-user';
+            userMessageEl.innerHTML = `<div class="chat-bubble">${message}</div>`;
+            messagesContainer.appendChild(userMessageEl);
+
+            // Clear input
+            input.value = '';
+
+            // Scroll to bottom
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            // Show loading
+            const loadingEl = document.createElement('div');
+            loadingEl.className = 'chat-message chat-message-assistant';
+            loadingEl.innerHTML = `
+                <div class="chat-loading">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            `;
+            messagesContainer.appendChild(loadingEl);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            // Simulate streaming response
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // Remove loading
+            loadingEl.remove();
+
+            // Add assistant response with streaming
+            const assistantMessageEl = document.createElement('div');
+            assistantMessageEl.className = 'chat-message chat-message-assistant';
+            assistantMessageEl.innerHTML = `<div class="chat-bubble" id="streamingText"></div>`;
+            messagesContainer.appendChild(assistantMessageEl);
+
+            const responseText = getInitialQuestions(message);
+            await streamText(responseText, 'streamingText');
+
+            // Add question buttons in groups
+            const questionGroups = getQuestionButtons(message);
+            const buttonsHTML = `
+                <div style="margin-top: 16px;">
+                    <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: #0a0a0a; margin-bottom: 8px;">Budget Range:</p>
+                    <div class="chat-question-buttons">
+                        ${questionGroups.budget.map(q => `
+                            <button class="chat-question-btn" onclick="answerQuestion('${q.key}', '${q.value}', this, 'budget')">
+                                ${q.label}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <p style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: #0a0a0a; margin-bottom: 8px;">Primary Usage:</p>
+                    <div class="chat-question-buttons">
+                        ${questionGroups.usage.map(q => `
+                            <button class="chat-question-btn" onclick="answerQuestion('${q.key}', '${q.value}', this, 'usage')">
+                                ${q.label}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            assistantMessageEl.innerHTML += buttonsHTML;
+
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        async function answerQuestion(key, value, buttonEl, group) {
+            // Deselect all buttons in the same group
+            const groupButtons = buttonEl.closest('.chat-question-buttons').querySelectorAll('.chat-question-btn');
+            groupButtons.forEach(btn => {
+                btn.classList.remove('selected');
+                btn.style.pointerEvents = 'auto';
+            });
+
+            // Mark clicked button as selected
+            buttonEl.classList.add('selected');
+
+            // Store preference
+            userPreferences[key] = value;
+
+            // Check if both budget and usage are selected
+            if (userPreferences.budget && userPreferences.usage) {
+                // Disable all buttons
+                document.querySelectorAll('.chat-question-btn').forEach(btn => {
+                    btn.style.pointerEvents = 'none';
+                });
+
+                // Show final results
+                await showFinalResults();
+            }
+        }
+
+        async function showFinalResults() {
+            const messagesContainer = document.getElementById('chatMessages');
+
+            // Show loading
+            const loadingEl = document.createElement('div');
+            loadingEl.className = 'chat-message chat-message-assistant';
+            loadingEl.innerHTML = `
+                <div class="chat-loading">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            `;
+            messagesContainer.appendChild(loadingEl);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
+            loadingEl.remove();
+
+            // Add final message
+            const finalMessageEl = document.createElement('div');
+            finalMessageEl.className = 'chat-message chat-message-assistant';
+            finalMessageEl.innerHTML = `<div class="chat-bubble" id="finalStreamingText"></div>`;
+            messagesContainer.appendChild(finalMessageEl);
+
+            await streamText("Perfect! Based on your preferences, I've found the best options for you. Here are my top 4 recommendations:", 'finalStreamingText');
+
+            // Show inline results in chat
+            showInlineChatResults(finalMessageEl);
+
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function showInlineChatResults(messageEl) {
+            const results = getResultsData();
+
+            const inlineResultsHTML = `
+                <div class="chat-results-container">
+                    <div class="chat-results-scroll">
+                        ${results.map((r, i) => `
+                            <div class="chat-result-card">
+                                <div class="result-card-name">${r.name}</div>
+                                <div class="result-card-price">${r.price}</div>
+                                <div class="result-card-rating">⭐ ${r.rating} (${r.reviews})</div>
+                                <div class="result-card-store">${r.store}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <button class="open-results-btn" onclick="openResultsPanel()">
+                        <span>Open Results</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </button>
+                </div>
+            `;
+
+            messageEl.innerHTML += inlineResultsHTML;
+        }
+
+        function openResultsPanel() {
+            document.getElementById('appChatContainer').classList.add('split-view');
+            populateResultsPanel();
+        }
+
+        function closeResultsPanel() {
+            document.getElementById('appChatContainer').classList.remove('split-view');
+        }
+
+        function getResultsData() {
+            return [
+                {
+                    name: 'MacBook Pro 16" M3 Max',
+                    price: '$2,499',
+                    rating: '4.9',
+                    reviews: '3.2k',
+                    store: 'Apple Store',
+                    details: 'Powerful M3 Max chip, 36GB RAM, 1TB SSD. Perfect for professional video editing and creative work.'
+                },
+                {
+                    name: 'Dell XPS 17 OLED',
+                    price: '$1,899',
+                    rating: '4.7',
+                    reviews: '2.1k',
+                    store: 'Best Buy',
+                    details: 'Stunning 4K OLED display, Intel i9 processor, NVIDIA RTX 4070. Excellent for both work and entertainment.'
+                },
+                {
+                    name: 'ASUS ROG Zephyrus G16',
+                    price: '$1,799',
+                    rating: '4.6',
+                    reviews: '1.5k',
+                    store: 'Amazon',
+                    details: 'Gaming powerhouse with RTX 4080, 240Hz display. Great for gaming and creative tasks.'
+                },
+                {
+                    name: 'Lenovo ThinkPad X1 Carbon',
+                    price: '$1,599',
+                    rating: '4.8',
+                    reviews: '2.8k',
+                    store: 'Lenovo',
+                    details: 'Ultra-portable business laptop, excellent keyboard, long battery life. Perfect for professionals on the go.'
+                }
+            ];
+        }
+
+        async function streamText(text, elementId) {
+            const element = document.getElementById(elementId);
+            let index = 0;
+
+            while (index < text.length) {
+                element.textContent += text[index];
+                index++;
+                await new Promise(resolve => setTimeout(resolve, 20));
+                document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+            }
+        }
+
+        function getInitialQuestions(message) {
+            return "Great choice! To find the perfect match for you, I need to understand your preferences better. Please answer these questions:";
+        }
+
+        function getQuestionButtons(message) {
+            return {
+                budget: [
+                    { key: 'budget', value: 'under-1500', label: 'Under $1,500' },
+                    { key: 'budget', value: '1500-2000', label: '$1,500 - $2,000' },
+                    { key: 'budget', value: 'over-2000', label: 'Over $2,000' }
+                ],
+                usage: [
+                    { key: 'usage', value: 'professional', label: 'Professional work' },
+                    { key: 'usage', value: 'gaming', label: 'Gaming' },
+                    { key: 'usage', value: 'general', label: 'General use' }
+                ]
+            };
+        }
+
+        function populateResultsPanel() {
+            const results = getResultsData();
+
+            const resultsGrid = document.getElementById('resultsGrid');
+            resultsGrid.innerHTML = results.map((r, i) => `
+                <div class="result-card">
+                    <div class="result-card-header">
+                        <div class="result-card-info">
+                            <div class="result-card-name">${r.name}</div>
+                            <div class="result-card-price">${r.price}</div>
+                            <div class="result-card-rating">⭐ ${r.rating} (${r.reviews} reviews)</div>
+                            <div class="result-card-store">${r.store}</div>
+                        </div>
+                        <div class="result-card-actions">
+                            <button class="result-action-btn thumbs-up" onclick="toggleAction(this, 'thumbs-up', ${i})">
+                                <i class="fas fa-thumbs-up"></i>
+                            </button>
+                            <button class="result-action-btn thumbs-down" onclick="toggleAction(this, 'thumbs-down', ${i})">
+                                <i class="fas fa-thumbs-down"></i>
+                            </button>
+                            <button class="result-action-btn save" onclick="toggleAction(this, 'save', ${i})">
+                                <i class="fas fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="result-card-details">${r.details}</div>
+                </div>
+            `).join('');
+        }
+
+        function toggleAction(button, actionType, resultIndex) {
+            if (actionType === 'thumbs-up' || actionType === 'thumbs-down') {
+                // Clear opposite thumb
+                const card = button.closest('.result-card');
+                const oppositeType = actionType === 'thumbs-up' ? 'thumbs-down' : 'thumbs-up';
+                const oppositeBtn = card.querySelector(`.result-action-btn.${oppositeType}`);
+                oppositeBtn.classList.remove('active');
+            }
+
+            button.classList.toggle('active');
+            const isActive = button.classList.contains('active');
+
+            // Handle save action
+            if (actionType === 'save') {
+                const results = getResultsData();
+                const item = results[resultIndex];
+
+                if (isActive) {
+                    // Add to saved items
+                    savedItems.push(item);
+                    console.log('Saved:', item.name);
+                } else {
+                    // Remove from saved items
+                    savedItems = savedItems.filter(i => i.name !== item.name);
+                    console.log('Unsaved:', item.name);
+                }
+            }
+
+            console.log(`Result ${resultIndex}: ${actionType} = ${isActive}`);
+        }
+
+        // Auto-resize textarea
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatInput = document.getElementById('chatInput');
+            const chatInputBottom = document.getElementById('chatInputBottom');
+
+            function setupInput(input) {
+                if (!input) return;
+
+                input.addEventListener('input', function() {
+                    this.style.height = 'auto';
+                    this.style.height = this.scrollHeight + 'px';
+                });
+
+                // Send on Enter, new line on Shift+Enter
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        sendMessage();
+                    }
+                });
+            }
+
+            setupInput(chatInput);
+            setupInput(chatInputBottom);
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            const userMenu = document.querySelector('.app-user-menu');
+            const dropdown = document.getElementById('userDropdown');
+
+            if (userMenu && !userMenu.contains(e.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+
+        // Close dialog when clicking outside
+        document.getElementById('loginDialog').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLoginDialog();
+            }
+        });
+
+        // Connect all login buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all buttons that should open login
+            const loginButtons = document.querySelectorAll('.btn-primary, .header-btn, .cta-btn');
+
+            loginButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openLoginDialog();
+                });
+            });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Demo animation sequence
+        function startDemoSequence() {
+            const typingInput = document.querySelector('.typing-demo');
+            const sendBtn = document.querySelector('.demo-send-btn');
+            const products = document.querySelectorAll('.demo-product');
+            const pointsBadge = document.querySelector('.demo-points-floating');
+
+            if (!typingInput) return;
+
+            // Reset everything first
+            typingInput.value = '';
+            sendBtn.classList.remove('clicked', 'pulse');
+            pointsBadge.classList.remove('show', 'pulse');
+            products.forEach(product => {
+                product.classList.remove('show', 'animate-in');
+            });
+
+            const text = typingInput.dataset.text;
+            let index = 0;
+
+            // Typing animation - faster
+            const typeInterval = setInterval(() => {
+                typingInput.value = text.substring(0, index + 1);
+                index++;
+
+                if (index >= text.length) {
+                    clearInterval(typeInterval);
+
+                    // Button click animation after typing - faster
+                    setTimeout(() => {
+                        sendBtn.classList.add('clicked', 'pulse');
+
+                        setTimeout(() => {
+                            sendBtn.classList.remove('clicked', 'pulse');
+
+                            // Show points first with animation
+                            pointsBadge.classList.add('show', 'pulse');
+
+                            // Show products one by one - faster
+                            products.forEach((product, i) => {
+                                setTimeout(() => {
+                                    product.classList.add('show', 'animate-in');
+                                }, i * 120 + 300);
+                            });
+
+                            // Restart the sequence after everything is shown
+                            setTimeout(() => {
+                                startDemoSequence();
+                            }, 4000);
+                        }, 150);
+                    }, 200);
+                }
+            }, 15);
+        }
+
+        // Start demo on page load - faster
+        window.addEventListener('load', () => {
+            setTimeout(startDemoSequence, 500);
+        });
+
+        // Add parallax effect to shapes on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const shapes = document.querySelectorAll('.shape');
+
+            shapes.forEach((shape, index) => {
+                const speed = 0.5 + (index * 0.1);
+                shape.style.transform = `translateY(${scrolled * speed}px) rotate(var(--rotate))`;
+            });
+        });
+
+        // Reviews Carousel functionality
+        let currentReview = 0;
+        const reviews = document.querySelectorAll('.review-slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function updateReviewsCarousel() {
+            reviews.forEach((review, index) => {
+                review.classList.remove('active', 'prev', 'next');
+
+                if (index === currentReview) {
+                    review.classList.add('active');
+                } else if (index === (currentReview - 1 + reviews.length) % reviews.length) {
+                    review.classList.add('prev');
+                } else if (index === (currentReview + 1) % reviews.length) {
+                    review.classList.add('next');
+                }
+            });
+
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentReview);
+            });
+        }
+
+        function nextReview() {
+            currentReview = (currentReview + 1) % reviews.length;
+            updateReviewsCarousel();
+        }
+
+        function goToReview(index) {
+            currentReview = index;
+            updateReviewsCarousel();
+        }
+
+        // Auto-rotate reviews
+        setInterval(nextReview, 4000);
+
+        // Dot navigation
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => goToReview(index));
+        });
+
+        // Initialize carousel
+        updateReviewsCarousel();
+
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const isActive = faqItem.classList.contains('active');
+
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+
+                // Toggle current item
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Add hover effect to buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+            });
+
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

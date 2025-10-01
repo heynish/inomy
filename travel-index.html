@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelAI - Your Smart Travel Planner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #0066ff;
+            --primary-dark: #0052cc;
+            --bg-main: #ffffff;
+            --bg-secondary: #f5f7fa;
+            --text-primary: #1a1a1a;
+            --text-secondary: #666666;
+            --border: #e1e4e8;
+            --card-bg: #ffffff;
+            --shadow: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        /* Container Layout */
+        .app-container {
+            display: flex;
+            height: 100vh;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Chat Section */
+        .chat-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-main);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .chat-section.collapsed {
+            flex: 0 0 380px;
+            border-right: 1px solid var(--border);
+        }
+        
+        /* Header */
+        .header {
+            padding: 20px 24px;
+            background: var(--bg-main);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo i {
+            font-size: 24px;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .btn-icon {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--border);
+            background: var(--bg-main);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text-secondary);
+        }
+        
+        .btn-icon:hover {
+            background: var(--bg-secondary);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        
+        /* Chat Messages */
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .message {
+            display: flex;
+            gap: 12px;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .message.user {
+            flex-direction: row-reverse;
+        }
+        
+        .message-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .message.ai .message-avatar {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+        
+        .message.user .message-avatar {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+        
+        .message-content {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            line-height: 1.5;
+        }
+        
+        .message.ai .message-content {
+            background: var(--bg-secondary);
+            border-bottom-left-radius: 4px;
+        }
+        
+        .message.user .message-content {
+            background: var(--primary);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+        
+        /* Typing Indicator */
+        .typing-indicator {
+            display: none;
+            padding: 12px 16px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            width: 60px;
+        }
+        
+        .typing-indicator.active {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--text-secondary);
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+        
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+                opacity: 0.5;
+            }
+            30% {
+                transform: translateY(-10px);
+                opacity: 1;
+            }
+        }
+        
+        /* Chat Input */
+        .chat-input-container {
+            padding: 20px 24px;
+            background: var(--bg-main);
+            border-top: 1px solid var(--border);
+        }
+        
+        .quick-suggestions {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .suggestion-chip {
+            padding: 6px 12px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .suggestion-chip:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .chat-input-wrapper {
+            display: flex;
+            gap: 8px;
+            align-items: flex-end;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 14px;
+            resize: none;
+            outline: none;
+            font-family: inherit;
+            line-height: 1.4;
+            min-height: 44px;
+            max-height: 120px;
+        }
+        
+        .chat-input:focus {
+            border-color: var(--primary);
+        }
+        
+        .send-btn {
+            width: 44px;
+            height: 44px;
+            background: var(--primary);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .send-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+        
+        /* Calendar Section */
+        .calendar-section {
+            flex: 0;
+            background: var(--bg-secondary);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .calendar-section.active {
+            flex: 1;
+            display: flex;
+        }
+        
+        /* Calendar Header */
+        .calendar-header {
+            padding: 20px 24px;
+            background: var(--bg-main);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .trip-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .trip-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .trip-dates {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .calendar-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        /* Calendar Grid */
+        .calendar-container {
+            flex: 1;
+            overflow: auto;
+            padding: 20px;
+        }
+        
+        .calendar-scroll {
+            display: flex;
+            gap: 16px;
+            min-width: max-content;
+            padding-bottom: 20px;
+        }
+        
+        .day-column {
+            width: 280px;
+            background: var(--bg-main);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .day-header {
+            padding: 16px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            text-align: center;
+        }
+        
+        .day-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .day-date {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+        
+        .day-timeline {
+            flex: 1;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: var(--bg-secondary);
+        }
+        
+        /* Time Blocks */
+        .time-block {
+            background: white;
+            border-radius: 8px;
+            padding: 12px;
+            box-shadow: var(--shadow);
+            cursor: move;
+            transition: all 0.2s;
+            border-left: 3px solid var(--primary);
+            position: relative;
+        }
+        
+        .time-block:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .time-block.dragging {
+            opacity: 0.5;
+            cursor: grabbing;
+        }
+        
+        .block-time {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+        
+        .block-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .block-location {
+            font-size: 12px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .block-location i {
+            font-size: 10px;
+        }
+        
+        /* Block Categories */
+        .time-block.transport {
+            border-left-color: #ff9800;
+            background: #fff8f0;
+        }
+        
+        .time-block.meal {
+            border-left-color: #4caf50;
+            background: #f0f9f0;
+        }
+        
+        .time-block.activity {
+            border-left-color: #2196f3;
+            background: #f0f7ff;
+        }
+        
+        .time-block.accommodation {
+            border-left-color: #9c27b0;
+            background: #f9f0ff;
+        }
+        
+        /* Drop Indicator */
+        .drop-indicator {
+            height: 4px;
+            margin: 8px 0;
+            pointer-events: none;
+        }
+        
+        .drop-line {
+            height: 2px;
+            background: var(--primary);
+            border-radius: 1px;
+            opacity: 0.8;
+        }
+        
+        /* Add Block Button */
+        .add-block-btn {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            width: 48px;
+            height: 48px;
+            background: var(--primary);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.2s;
+        }
+        
+        .add-block-btn:hover {
+            transform: scale(1.1);
+            background: var(--primary-dark);
+        }
+        
+        /* Welcome Screen */
+        .welcome-screen {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .welcome-icon {
+            font-size: 64px;
+            color: var(--primary);
+            margin-bottom: 24px;
+        }
+        
+        .welcome-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .welcome-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            max-width: 400px;
+        }
+        
+        .example-prompts {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .example-prompt {
+            padding: 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .example-prompt:hover {
+            background: white;
+            border-color: var(--primary);
+            transform: translateX(4px);
+        }
+        
+        .example-prompt-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .example-prompt-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        
+        /* Loading State */
+        .loading-overlay {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+        
+        .loading-overlay.active {
+            display: flex;
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .chat-section.collapsed {
+                position: absolute;
+                left: -380px;
+                z-index: 10;
+            }
+            
+            .chat-section.collapsed.mobile-open {
+                left: 0;
+            }
+            
+            .calendar-section.active {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Chat Section -->
+        <div class="chat-section" id="chatSection">
+            <div class="header">
+                <div class="logo">
+                    <i class="fas fa-plane-departure"></i>
+                    <span>TravelAI</span>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-icon" title="New Trip">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <button class="btn-icon" title="Settings">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <!-- Welcome Screen -->
+                <div class="welcome-screen" id="welcomeScreen">
+                    <div class="welcome-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h1 class="welcome-title">Plan Your Perfect Trip</h1>
+                    <p class="welcome-subtitle">Tell me about your dream vacation and I'll create a personalized itinerary just for you.</p>
+                    
+                    <div class="example-prompts">
+                        <div class="example-prompt" onclick="sendExample('weekend-paris')">
+                            <div class="example-prompt-title">🇫🇷 Weekend in Paris</div>
+                            <div class="example-prompt-desc">Romantic 3-day getaway for two</div>
+                        </div>
+                        <div class="example-prompt" onclick="sendExample('japan-culture')">
+                            <div class="example-prompt-title">🇯🇵 Japan Cultural Tour</div>
+                            <div class="example-prompt-desc">7-day exploration of temples and traditions</div>
+                        </div>
+                        <div class="example-prompt" onclick="sendExample('beach-vacation')">
+                            <div class="example-prompt-title">🏖️ Tropical Beach Escape</div>
+                            <div class="example-prompt-desc">5-day relaxation in Bali</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chat messages will be added here -->
+            </div>
+            
+            <div class="chat-input-container">
+                <div class="quick-suggestions">
+                    <div class="suggestion-chip" onclick="addToInput('3-day trip')">3-day trip</div>
+                    <div class="suggestion-chip" onclick="addToInput('family vacation')">family vacation</div>
+                    <div class="suggestion-chip" onclick="addToInput('budget travel')">budget travel</div>
+                    <div class="suggestion-chip" onclick="addToInput('adventure')">adventure</div>
+                </div>
+                
+                <div class="chat-input-wrapper">
+                    <textarea class="chat-input" id="chatInput" placeholder="Describe your ideal trip..." rows="1"></textarea>
+                    <button class="send-btn" onclick="sendMessage()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Calendar Section -->
+        <div class="calendar-section" id="calendarSection">
+            <div class="calendar-header">
+                <div class="trip-info">
+                    <div>
+                        <div class="trip-title" id="tripTitle">Paris Adventure</div>
+                        <div class="trip-dates" id="tripDates">June 15-17, 2025</div>
+                    </div>
+                </div>
+                <div class="calendar-actions">
+                    <button class="btn-icon" title="Export">
+                        <i class="fas fa-download"></i>
+                    </button>
+                    <button class="btn-icon" title="Share">
+                        <i class="fas fa-share"></i>
+                    </button>
+                    <button class="btn-icon" onclick="toggleChat()" title="Toggle Chat">
+                        <i class="fas fa-comments"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="calendar-container">
+                <div class="loading-overlay" id="loadingOverlay">
+                    <div class="loading-spinner"></div>
+                </div>
+                
+                <div class="calendar-scroll" id="calendarScroll">
+                    <!-- Calendar days will be added here -->
+                </div>
+            </div>
+            
+            <button class="add-block-btn" title="Add Activity">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        // State Management
+        let currentTrip = null;
+        let chatHistory = [];
+        let isDragging = false;
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeChat();
+            setupDragDrop();
+            setupInputResize();
+        });
+        
+        // Chat Functions
+        function initializeChat() {
+            const input = document.getElementById('chatInput');
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+        }
+        
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Hide welcome screen if visible
+            const welcomeScreen = document.getElementById('welcomeScreen');
+            if (welcomeScreen) {
+                welcomeScreen.style.display = 'none';
+            }
+            
+            // Add user message
+            addMessage('user', message);
+            input.value = '';
+            input.style.height = 'auto';
+            
+            // Simulate AI response
+            simulateAIResponse(message);
+        }
+        
+        function addMessage(type, content) {
+            const messagesContainer = document.getElementById('chatMessages');
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            
+            messageDiv.innerHTML = `
+                <div class="message-avatar">${type === 'ai' ? 'AI' : 'U'}</div>
+                <div class="message-content">${content}</div>
+            `;
+            
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        function simulateAIResponse(userMessage) {
+            // Show typing indicator
+            const messagesContainer = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message ai';
+            typingDiv.innerHTML = `
+                <div class="message-avatar">AI</div>
+                <div class="typing-indicator active">
+                    <span class="typing-dot"></span>
+                    <span class="typing-dot"></span>
+                    <span class="typing-dot"></span>
+                </div>
+            `;
+            messagesContainer.appendChild(typingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // Simulate processing time
+            setTimeout(() => {
+                typingDiv.remove();
+                
+                // Check if this is a trip planning request
+                if (userMessage.toLowerCase().includes('paris') || 
+                    userMessage.toLowerCase().includes('trip') || 
+                    userMessage.toLowerCase().includes('vacation')) {
+                    
+                    addMessage('ai', "I've created a perfect 3-day Paris itinerary for you! The calendar view shows your complete schedule with must-see attractions, dining recommendations, and optimal timing for each activity.");
+                    
+                    // Generate and show calendar
+                    generateTripPlan();
+                    showCalendar();
+                } else {
+                    // Regular conversation response
+                    const responses = [
+                        "I can help you plan amazing trips! Tell me about your destination, dates, and preferences.",
+                        "What kind of experiences are you looking for on your trip?",
+                        "I'd be happy to help! Could you share more details about your travel plans?"
+                    ];
+                    
+                    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                    addMessage('ai', randomResponse);
+                }
+            }, 1500);
+        }
+        
+        function sendExample(type) {
+            const examples = {
+                'weekend-paris': "I want to plan a romantic 3-day weekend trip to Paris for two people",
+                'japan-culture': "Help me plan a 7-day cultural tour of Japan including temples and traditional experiences",
+                'beach-vacation': "I need a relaxing 5-day beach vacation in Bali with spa and water activities"
+            };
+            
+            document.getElementById('chatInput').value = examples[type];
+            sendMessage();
+        }
+        
+        function addToInput(text) {
+            const input = document.getElementById('chatInput');
+            input.value = input.value ? `${input.value} ${text}` : text;
+            input.focus();
+        }
+        
+        // Calendar Functions
+        function showCalendar() {
+            const chatSection = document.getElementById('chatSection');
+            const calendarSection = document.getElementById('calendarSection');
+            
+            chatSection.classList.add('collapsed');
+            calendarSection.classList.add('active');
+        }
+        
+        function toggleChat() {
+            const chatSection = document.getElementById('chatSection');
+            chatSection.classList.toggle('mobile-open');
+        }
+        
+        function generateTripPlan() {
+            const calendarScroll = document.getElementById('calendarScroll');
+            calendarScroll.innerHTML = '';
+            
+            // Sample 3-day Paris trip
+            const days = [
+                {
+                    name: 'Day 1',
+                    date: 'June 15, 2025',
+                    activities: [
+                        { time: '9:00 AM', duration: 2, title: 'Eiffel Tower', location: 'Champ de Mars', type: 'activity' },
+                        { time: '12:00 PM', duration: 1.5, title: 'Lunch at Café de Flore', location: 'Saint-Germain', type: 'meal' },
+                        { time: '2:00 PM', duration: 2, title: 'Louvre Museum', location: '1st Arrondissement', type: 'activity' },
+                        { time: '5:00 PM', duration: 1, title: 'Seine River Cruise', location: 'Port de la Bourdonnais', type: 'activity' },
+                        { time: '7:30 PM', duration: 2, title: 'Dinner in Montmartre', location: 'Montmartre', type: 'meal' }
+                    ]
+                },
+                {
+                    name: 'Day 2',
+                    date: 'June 16, 2025',
+                    activities: [
+                        { time: '9:30 AM', duration: 1.5, title: 'Notre-Dame Cathedral', location: 'Île de la Cité', type: 'activity' },
+                        { time: '11:30 AM', duration: 2, title: 'Versailles Palace', location: 'Versailles', type: 'activity' },
+                        { time: '2:00 PM', duration: 1, title: 'Lunch at Palace', location: 'Versailles', type: 'meal' },
+                        { time: '4:00 PM', duration: 1.5, title: 'Arc de Triomphe', location: 'Champs-Élysées', type: 'activity' },
+                        { time: '8:00 PM', duration: 2, title: 'Fine Dining Experience', location: 'Le Marais', type: 'meal' }
+                    ]
+                },
+                {
+                    name: 'Day 3',
+                    date: 'June 17, 2025',
+                    activities: [
+                        { time: '10:00 AM', duration: 2, title: 'Musée d\'Orsay', location: '7th Arrondissement', type: 'activity' },
+                        { time: '12:30 PM', duration: 1, title: 'Picnic at Luxembourg', location: 'Luxembourg Gardens', type: 'meal' },
+                        { time: '2:00 PM', duration: 1.5, title: 'Sacré-Cœur Basilica', location: 'Montmartre', type: 'activity' },
+                        { time: '4:00 PM', duration: 2, title: 'Shopping & Souvenirs', location: 'Le Marais', type: 'activity' },
+                        { time: '7:00 PM', duration: 2, title: 'Farewell Dinner', location: 'Latin Quarter', type: 'meal' }
+                    ]
+                }
+            ];
+            
+            days.forEach((day, dayIndex) => {
+                const dayColumn = document.createElement('div');
+                dayColumn.className = 'day-column';
+                dayColumn.innerHTML = `
+                    <div class="day-header">
+                        <div class="day-name">${day.name}</div>
+                        <div class="day-date">${day.date}</div>
+                    </div>
+                    <div class="day-timeline" id="timeline-${dayIndex}" data-day="${dayIndex}">
+                        ${day.activities.map((activity, index) => createTimeBlock(activity, index)).join('')}
+                    </div>
+                `;
+                
+                calendarScroll.appendChild(dayColumn);
+            });
+        }
+        
+        function createTimeBlock(activity, index) {
+            return `
+                <div class="time-block ${activity.type}" 
+                     draggable="true"
+                     data-index="${index}">
+                    <div class="block-time">${activity.time} (${activity.duration}h)</div>
+                    <div class="block-title">${activity.title}</div>
+                    <div class="block-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        ${activity.location}
+                    </div>
+                </div>
+            `;
+        }
+        
+        function getTimePosition(timeString) {
+            const [time, period] = timeString.split(' ');
+            const [hours, minutes] = time.split(':').map(Number);
+            
+            let hour24 = hours;
+            if (period === 'PM' && hours !== 12) hour24 += 12;
+            if (period === 'AM' && hours === 12) hour24 = 0;
+            
+            // Start at 6 AM, each hour = 80px
+            const startHour = 6;
+            return ((hour24 - startHour) * 80) + ((minutes || 0) * 80 / 60) + 20;
+        }
+        
+        // Drag and Drop
+        let draggedElement = null;
+        let draggedData = null;
+        
+        function setupDragDrop() {
+            document.addEventListener('dragstart', (e) => {
+                if (e.target.classList.contains('time-block')) {
+                    draggedElement = e.target;
+                    draggedData = {
+                        html: e.target.outerHTML,
+                        index: e.target.dataset.index,
+                        sourceDay: e.target.closest('.day-timeline').dataset.day
+                    };
+                    e.target.classList.add('dragging');
+                    e.dataTransfer.effectAllowed = 'move';
+                }
+            });
+            
+            document.addEventListener('dragend', (e) => {
+                if (e.target.classList.contains('time-block')) {
+                    e.target.classList.remove('dragging');
+                    draggedElement = null;
+                    draggedData = null;
+                    
+                    // Remove all drop indicators
+                    document.querySelectorAll('.drop-indicator').forEach(el => el.remove());
+                }
+            });
+            
+            document.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                
+                const timeline = e.target.closest('.day-timeline');
+                if (timeline && draggedElement) {
+                    const afterElement = getDragAfterElement(timeline, e.clientY);
+                    const dropIndicator = getOrCreateDropIndicator();
+                    
+                    if (afterElement == null) {
+                        timeline.appendChild(dropIndicator);
+                    } else {
+                        timeline.insertBefore(dropIndicator, afterElement);
+                    }
+                }
+            });
+            
+            document.addEventListener('drop', (e) => {
+                e.preventDefault();
+                
+                const timeline = e.target.closest('.day-timeline');
+                if (timeline && draggedElement && draggedData) {
+                    const afterElement = getDragAfterElement(timeline, e.clientY);
+                    
+                    // Remove the dragged element from its original position
+                    draggedElement.remove();
+                    
+                    // Create new element at drop position
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = draggedData.html;
+                    const newElement = tempDiv.firstElementChild;
+                    
+                    if (afterElement == null) {
+                        timeline.appendChild(newElement);
+                    } else {
+                        timeline.insertBefore(newElement, afterElement);
+                    }
+                    
+                    // Remove drop indicator
+                    document.querySelectorAll('.drop-indicator').forEach(el => el.remove());
+                    
+                    // Re-setup drag and drop for new element
+                    setupDragDropForElement(timeline.querySelector('.time-block:last-child') || 
+                                          timeline.querySelector(`[data-index="${draggedData.index}"]`));
+                }
+            });
+        }
+        
+        function getDragAfterElement(container, y) {
+            const draggableElements = [...container.querySelectorAll('.time-block:not(.dragging)')];
+            
+            return draggableElements.reduce((closest, child) => {
+                const box = child.getBoundingClientRect();
+                const offset = y - box.top - box.height / 2;
+                
+                if (offset < 0 && offset > closest.offset) {
+                    return { offset: offset, element: child };
+                } else {
+                    return closest;
+                }
+            }, { offset: Number.NEGATIVE_INFINITY }).element;
+        }
+        
+        function getOrCreateDropIndicator() {
+            let indicator = document.querySelector('.drop-indicator');
+            if (!indicator) {
+                indicator = document.createElement('div');
+                indicator.className = 'drop-indicator';
+                indicator.innerHTML = '<div class="drop-line"></div>';
+            }
+            return indicator;
+        }
+        
+        function setupDragDropForElement(element) {
+            if (element) {
+                element.draggable = true;
+            }
+        }
+        
+        // Auto-resize textarea
+        function setupInputResize() {
+            const textarea = document.getElementById('chatInput');
+            textarea.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+            });
+        }
+    </script>
+</body>
+</html>
