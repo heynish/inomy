@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rewards - Inomy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&family=Bebas+Neue&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gold-gradient: linear-gradient(135deg, #f9d423 0%, #ff4e50 100%);
+            --bg-primary: #fafafa;
+            --bg-secondary: #ffffff;
+            --text-primary: #0a0a0a;
+            --text-secondary: #666;
+            --border-color: rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            padding-bottom: 80px;
+        }
+
+        /* Header */
+        .header {
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        @media (min-width: 768px) {
+            .header {
+                padding: 20px 60px;
+            }
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28px;
+            background: linear-gradient(90deg, #000000 0%, #434343 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+        }
+
+        @media (min-width: 768px) {
+            .logo {
+                font-size: 32px;
+            }
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .nav-menu {
+                gap: 40px;
+            }
+        }
+
+        .nav-link {
+            font-family: 'Outfit', sans-serif;
+            color: #2a2a2a;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 13px;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        @media (min-width: 768px) {
+            .nav-link {
+                font-size: 14px;
+            }
+        }
+
+        .nav-link.active {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        /* Container */
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 76px 20px 20px;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                max-width: 1200px;
+                padding: 100px 40px 40px;
+            }
+        }
+
+        /* IXP Balance Card */
+        .ixp-card {
+            background: var(--primary-gradient);
+            border-radius: 24px;
+            padding: 32px 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .ixp-card {
+                padding: 40px 32px;
+            }
+
+            .ixp-balance {
+                font-size: 64px;
+            }
+        }
+
+        .ixp-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .ixp-label {
+            font-family: 'Outfit', sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 8px;
+        }
+
+        .ixp-balance {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 56px;
+            color: white;
+            letter-spacing: 0.02em;
+            line-height: 1;
+        }
+
+        .ixp-subtitle {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 8px;
+        }
+
+        /* Tab Navigation */
+        .tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .tabs {
+                justify-content: center;
+                gap: 16px;
+                margin-bottom: 32px;
+            }
+        }
+
+        .tab {
+            font-family: 'Outfit', sans-serif;
+            padding: 10px 20px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        @media (min-width: 768px) {
+            .tab {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+        }
+
+        .tab i {
+            font-size: 11px;
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: transparent;
+        }
+
+        /* Flair Filters */
+        .flair-filter {
+            font-family: 'Outfit', sans-serif;
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .flair-filter.active {
+            background: var(--text-primary);
+            color: white;
+            border-color: var(--text-primary);
+        }
+
+        /* Section */
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @media (min-width: 1024px) {
+            .section-title {
+                font-size: 24px;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        /* Leaderboard */
+        .leaderboard-filters {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .filter-btn {
+            font-family: 'Outfit', sans-serif;
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+        }
+
+        .filter-btn.active {
+            background: var(--text-primary);
+            color: white;
+            border-color: var(--text-primary);
+        }
+
+        .leaderboard-list {
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .leaderboard-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            transition: all 0.3s;
+        }
+
+        .leaderboard-item:hover {
+            background: var(--bg-primary);
+        }
+
+        .leaderboard-rank {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 24px;
+            width: 40px;
+            color: var(--text-secondary);
+        }
+
+        .leaderboard-rank.top {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .leaderboard-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            margin-right: 12px;
+            font-size: 11px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .leaderboard-info {
+            flex: 1;
+        }
+
+        .leaderboard-name {
+            font-weight: 600;
+            font-size: 13px;
+            margin-bottom: 2px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .leaderboard-subtitle {
+            font-size: 11px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .copy-address {
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        .copy-address:hover {
+            opacity: 1;
+        }
+
+        .leaderboard-points {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 20px;
+            color: #667eea;
+        }
+
+        /* Flairs/Badges */
+        .badges-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .badge-card {
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .badge-card.locked {
+            opacity: 0.5;
+        }
+
+        .badge-card:active {
+            transform: scale(0.95);
+        }
+
+        .badge-icon {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 12px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            background: var(--primary-gradient);
+        }
+
+        .badge-card.rare .badge-icon {
+            background: var(--success-gradient);
+        }
+
+        .badge-card.legendary .badge-icon {
+            background: var(--gold-gradient);
+        }
+
+        .badge-name {
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .badge-count {
+            font-size: 10px;
+            color: var(--text-secondary);
+        }
+
+        .badge-lock {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 20px;
+            height: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 10px;
+        }
+
+        /* Daily Challenges */
+        .challenges-list {
+            margin-bottom: 24px;
+        }
+
+        .challenge-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #667eea;
+        }
+
+        .challenge-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .challenge-title {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .challenge-description {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .challenge-reward {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 12px;
+            background: var(--primary-gradient);
+            color: white;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--bg-primary);
+            border-radius: 100px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-gradient);
+            border-radius: 100px;
+            transition: width 0.3s;
+        }
+
+        .progress-text {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Earn Points */
+        .earn-list {
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .earn-item {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .earn-item:last-child {
+            border-bottom: none;
+        }
+
+        .earn-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            margin-right: 16px;
+        }
+
+        .earn-info {
+            flex: 1;
+        }
+
+        .earn-title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .earn-description {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .earn-points {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 18px;
+            color: #667eea;
+        }
+
+        /* Gift Cards */
+        .giftcard-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .giftcard-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .giftcard-card:active {
+            transform: scale(0.98);
+        }
+
+        .giftcard-image {
+            width: 100%;
+            height: 120px;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+        }
+
+        .giftcard-content {
+            padding: 16px;
+        }
+
+        .giftcard-title {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .giftcard-description {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .giftcard-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .giftcard-price {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 24px;
+            color: #667eea;
+        }
+
+        .giftcard-btn {
+            padding: 8px 20px;
+            background: var(--text-primary);
+            color: white;
+            border: none;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .giftcard-btn.disabled {
+            background: var(--border-color);
+            color: var(--text-secondary);
+            cursor: not-allowed;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-value {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 36px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 24px;
+            padding: 32px 24px;
+            max-width: 400px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .modal-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 16px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+        }
+
+        .modal-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .modal-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .modal-btn.primary {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        .modal-btn.secondary {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        /* Earn Rewards Styles */
+        .reward-item {
+            background: var(--bg-primary);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .reward-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .reward-title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .reward-ixp {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 20px;
+            color: #667eea;
+            margin-top: 4px;
+        }
+
+        .claim-btn-top {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.3s;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .claim-btn-top.primary {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        .claim-btn-top.primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .claim-btn-top.claimed {
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            cursor: not-allowed;
+        }
+
+        .reward-description {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .reward-limit {
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 12px;
+        }
+
+        .claim-btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .claim-btn.primary {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        .claim-btn.primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .claim-btn.claimed {
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            cursor: not-allowed;
+        }
+
+        .claim-btn.disabled {
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .badges-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 16px;
+            }
+
+            .giftcard-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 16px;
+            }
+
+            .leaderboard-list {
+                padding: 20px;
+            }
+
+            .leaderboard-item {
+                padding: 16px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .badges-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+
+            .giftcard-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .stats-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+            }
+
+            .stat-card {
+                padding: 24px;
+            }
+
+            .stat-value {
+                font-size: 42px;
+            }
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <a href="index.html" class="logo">inomy</a>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="rewards.html" class="nav-link active">Rewards</a>
+        </nav>
+    </header>
+
+    <!-- Container -->
+    <div class="container">
+        <!-- IXP Balance Card -->
+        <div class="ixp-card">
+            <button onclick="openIXPHistoryModal()" style="position: absolute; top: 20px; right: 20px; width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4); color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; transition: all 0.3s;" title="View IXP History">
+                <i class="fas fa-history"></i>
+            </button>
+            <div class="ixp-label">Your IXP Balance</div>
+            <div class="ixp-balance" id="ixpBalance">2,450</div>
+            <div class="ixp-subtitle">Keep earning to unlock more rewards!</div>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="streakValue">12</div>
+                <div class="stat-label">Daily Streak</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="flairsValue">12</div>
+                <div class="stat-label">Flairs</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="rankValue">#23</div>
+                <div class="stat-label">Rank</div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab active" data-tab="leaderboard">
+                <i class="fas fa-trophy"></i>
+                <span>Leaderboard</span>
+            </button>
+            <button class="tab" data-tab="flairs">
+                <i class="fas fa-star"></i>
+                <span>Flairs</span>
+            </button>
+            <button class="tab" data-tab="earn">
+                <i class="fas fa-coins"></i>
+                <span>Earn</span>
+            </button>
+            <button class="tab" data-tab="giftcards">
+                <i class="fas fa-gift"></i>
+                <span>Redeem</span>
+            </button>
+        </div>
+
+        <!-- Leaderboard Section -->
+        <div class="section active" id="leaderboard">
+            <h2 class="section-title">Leaderboard</h2>
+
+            <div class="leaderboard-filters">
+                <button class="filter-btn active" data-period="daily">Daily</button>
+                <button class="filter-btn" data-period="weekly">Weekly</button>
+                <button class="filter-btn" data-period="monthly">Monthly</button>
+            </div>
+
+            <div class="leaderboard-list" id="leaderboardList">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+
+        <!-- Flairs Section -->
+        <div class="section" id="flairs">
+            <h2 class="section-title">Your Flairs & Badges</h2>
+            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">
+                🎁 Flairs with a gift icon unlock gift card redemption!
+            </p>
+
+            <!-- Category Filters -->
+            <div style="display: flex; gap: 8px; margin-bottom: 20px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
+                <button class="flair-filter active" data-category="all">All</button>
+                <button class="flair-filter" data-category="leaderboard">🏆 Leaderboard</button>
+                <button class="flair-filter" data-category="search">🔍 Search</button>
+                <button class="flair-filter" data-category="streak">🔥 Streaks</button>
+                <button class="flair-filter" data-category="referral">👥 Referral</button>
+                <button class="flair-filter" data-category="privacy">🛡️ Privacy</button>
+                <button class="flair-filter" data-category="community">💬 Community</button>
+                <button class="flair-filter" data-category="special">✨ Special</button>
+            </div>
+
+            <div class="badges-grid" id="badgesGrid">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+
+        <!-- Earn Section -->
+        <div class="section" id="earn">
+            <h2 class="section-title">Ways to Earn IXP</h2>
+
+            <!-- Community Stats Bar -->
+            <div id="communityStatsBar">
+                <!-- Dynamically populated -->
+            </div>
+
+            <!-- Automatic Rewards -->
+            <div style="margin-bottom: 32px;">
+                <h3 style="font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); margin-bottom: 16px;">Automatic Rewards</h3>
+                <div id="automaticRewardsSection"></div>
+            </div>
+
+            <!-- Claimable Rewards -->
+            <div>
+                <h3 style="font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); margin-bottom: 16px;">Claimable Rewards</h3>
+                <div id="claimableRewardsSection"></div>
+            </div>
+        </div>
+
+        <!-- Gift Cards Section -->
+        <div class="section" id="giftcards">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
+                <h2 class="section-title" style="margin-bottom: 0;">Redeem Rewards</h2>
+                <button onclick="openBudgetModal()" style="width: 24px; height: 24px; border-radius: 50%; background: rgba(102, 126, 234, 0.1); border: 1px solid rgba(102, 126, 234, 0.3); color: #667eea; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; transition: all 0.3s;" title="View budget & eligibility">
+                    <i class="fas fa-info"></i>
+                </button>
+            </div>
+
+            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 20px;">
+                🏆 Win top 3 on daily, weekly, or monthly leaderboards to unlock gift cards!
+            </p>
+
+            <div class="giftcard-grid" id="giftcardGrid">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Gift Card Modal -->
+    <div class="modal" id="giftcardModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-icon" id="modalIcon"></div>
+                <h3 class="modal-title" id="modalTitle"></h3>
+                <p class="modal-description" id="modalDescription"></p>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn secondary" onclick="closeModal()">Cancel</button>
+                <button class="modal-btn primary" id="redeemBtn">Redeem Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- IXP History Modal -->
+    <div class="modal" id="ixpHistoryModal">
+        <div class="modal-content" style="max-width: 600px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3 style="font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 700;">IXP Transaction History</h3>
+                <button onclick="closeIXPHistoryModal()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-secondary);">&times;</button>
+            </div>
+
+            <!-- Summary Card -->
+            <div style="background: var(--primary-gradient); border-radius: 16px; padding: 20px; margin-bottom: 20px; color: white;">
+                <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.9; margin-bottom: 8px;">Current Balance</div>
+                <div style="font-family: 'Bebas Neue', sans-serif; font-size: 48px; line-height: 1; margin-bottom: 12px;"><span id="modalIXPBalance">2,450</span> IXP</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div>
+                        <div style="font-size: 11px; opacity: 0.8; margin-bottom: 4px;">Total Earned</div>
+                        <div style="font-size: 20px; font-weight: 600;">2,450 IXP</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 11px; opacity: 0.8; margin-bottom: 4px;">This Week</div>
+                        <div style="font-size: 20px; font-weight: 600;">+320 IXP</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transaction List -->
+            <div style="max-height: 400px; overflow-y: auto;">
+                <div id="ixpHistoryList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Budget Info Modal -->
+    <div class="modal" id="budgetModal">
+        <div class="modal-content" style="max-width: 480px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3 style="font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 700;">Budget & Eligibility</h3>
+                <button onclick="closeBudgetModal()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-secondary);">&times;</button>
+            </div>
+
+            <!-- Budget Card -->
+            <div style="background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); border-radius: 16px; padding: 20px; margin-bottom: 20px; color: white;">
+                <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.9; margin-bottom: 12px;">Annual Redemption Budget</div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+                    <div>
+                        <div style="font-size: 11px; opacity: 0.8; margin-bottom: 4px;">Total Budget</div>
+                        <div style="font-family: 'Bebas Neue', sans-serif; font-size: 32px; line-height: 1;">$600</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 11px; opacity: 0.8; margin-bottom: 4px;">Calendar Year</div>
+                        <div style="font-family: 'Bebas Neue', sans-serif; font-size: 32px; line-height: 1;">2025</div>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+                    <div>
+                        <div style="font-size: 11px; opacity: 0.8; margin-bottom: 4px;">Redeemed</div>
+                        <div style="font-family: 'Bebas Neue', sans-serif; font-size: 28px; line-height: 1;">$<span id="modalRedemptionTotal">95</span></div>
+                    </div>
+                    <div>
+                        <div style="font-size: 11px; opacity: 0.8; margin-bottom: 4px;">Remaining</div>
+                        <div style="font-family: 'Bebas Neue', sans-serif; font-size: 28px; line-height: 1;">$<span id="modalRedemptionRemaining">505</span></div>
+                    </div>
+                </div>
+
+                <div style="width: 100%; height: 10px; background: rgba(255,255,255,0.2); border-radius: 100px; overflow: hidden;">
+                    <div id="modalRedemptionProgress" style="width: 15.8%; height: 100%; background: white; border-radius: 100px; transition: width 0.3s;"></div>
+                </div>
+            </div>
+
+            <!-- Eligibility Info -->
+            <div style="margin-bottom: 20px;">
+                <h4 style="font-weight: 600; font-size: 14px; margin-bottom: 12px; color: var(--text-primary);">🏆 How to Unlock Gift Cards</h4>
+                <div style="font-size: 13px; line-height: 1.6; color: var(--text-secondary);">
+                    Win top 3 positions on daily, weekly, or monthly leaderboards to earn special flairs. Each flair unlocks gift card redemption with these values:
+                </div>
+            </div>
+
+            <!-- Flair Values -->
+            <div style="background: var(--bg-primary); border-radius: 12px; padding: 16px; margin-bottom: 20px;">
+                <div style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); margin-bottom: 12px;">Redemption Values</div>
+
+                <div style="display: grid; gap: 8px;">
+                    <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                        <span>🥇 Daily 1st Place</span>
+                        <strong style="color: #F59E0B;">$10</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                        <span>🥈 Daily 2nd Place</span>
+                        <strong style="color: #F59E0B;">$10</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                        <span>🥉 Daily 3rd Place</span>
+                        <strong style="color: #F59E0B;">$5</strong>
+                    </div>
+                    <div style="height: 1px; background: var(--border-color); margin: 4px 0;"></div>
+                    <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                        <span>🏆 Weekly 1st Place</span>
+                        <strong style="color: #F59E0B;">$25</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                        <span>💎 Weekly 2nd Place</span>
+                        <strong style="color: #F59E0B;">$10</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                        <span>⭐ Weekly 3rd Place</span>
+                        <strong style="color: #F59E0B;">$10</strong>
+                    </div>
+                    <div style="height: 1px; background: var(--border-color); margin: 4px 0;"></div>
+                    <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                        <span>👑 Monthly 1st Place</span>
+                        <strong style="color: #F59E0B;">$50</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                        <span>🔥 Monthly 2nd Place</span>
+                        <strong style="color: #F59E0B;">$25</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                        <span>💫 Monthly 3rd Place</span>
+                        <strong style="color: #F59E0B;">$25</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Important Notes -->
+            <div style="background: rgba(102, 126, 234, 0.1); border-left: 3px solid #667eea; padding: 12px; border-radius: 4px;">
+                <div style="font-size: 12px; line-height: 1.6; color: var(--text-primary);">
+                    <strong>Important:</strong> You can win leaderboard positions unlimited times, but total gift card redemptions are capped at $600 per calendar year. Once you reach this limit, you can no longer redeem gift cards until the next year.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mock Data
+        const userData = {
+            ixp: 2450,
+            rank: 23,
+            streak: 12,
+            flairsUnlocked: 12, // Number of unlocked badges
+            hasLeaderboardWin: true, // User has won top 3 in daily/weekly/monthly
+            claimedRewards: ['social_share'], // Track which rewards have been claimed
+            annualRedemptions: {
+                year: 2025,
+                totalRedeemed: 95, // $95 redeemed so far
+                redemptions: [
+                    { date: '2025-01-15', type: 'Daily Champion', value: 10 },
+                    { date: '2025-02-03', type: 'Daily Champion', value: 10 },
+                    { date: '2025-02-10', type: 'Daily Runner-up', value: 10 },
+                    { date: '2025-02-28', type: 'Weekly Champion', value: 25 },
+                    { date: '2025-03-05', type: 'Daily Champion', value: 10 },
+                    { date: '2025-03-12', type: 'Daily Bronze', value: 5 },
+                    { date: '2025-03-20', type: 'Weekly Champion', value: 25 }
+                ]
+            },
+            ixpHistory: [
+                { date: '2025-03-21 14:30', action: 'Search Completed', amount: 10, balance: 2450, type: 'earn' },
+                { date: '2025-03-21 13:15', action: 'Deal Found', amount: 25, balance: 2440, type: 'earn' },
+                { date: '2025-03-21 10:45', action: 'Daily Login', amount: 20, balance: 2415, type: 'earn' },
+                { date: '2025-03-20 19:20', action: 'Weekly Champion', amount: 1000, balance: 2395, type: 'earn' },
+                { date: '2025-03-20 16:50', action: 'Search Completed', amount: 10, balance: 1395, type: 'earn' },
+                { date: '2025-03-20 14:30', action: 'Trackers Blocked', amount: 5, balance: 1385, type: 'earn' },
+                { date: '2025-03-19 11:20', action: 'Intent Created', amount: 25, balance: 1380, type: 'earn' },
+                { date: '2025-03-19 09:45', action: 'Search Completed', amount: 10, balance: 1355, type: 'earn' },
+                { date: '2025-03-18 16:30', action: 'Feedback Submitted', amount: 50, balance: 1345, type: 'earn' },
+                { date: '2025-03-18 10:15', action: 'Daily Login', amount: 20, balance: 1295, type: 'earn' },
+                { date: '2025-03-17 14:50', action: 'Search Completed', amount: 10, balance: 1275, type: 'earn' },
+                { date: '2025-03-16 12:30', action: 'Deal Found', amount: 25, balance: 1265, type: 'earn' },
+                { date: '2025-03-15 08:45', action: 'Daily Login', amount: 20, balance: 1240, type: 'earn' },
+                { date: '2025-03-14 17:20', action: 'Social Share', amount: 100, balance: 1220, type: 'earn' },
+                { date: '2025-03-13 15:30', action: 'Search Completed', amount: 10, balance: 1120, type: 'earn' }
+            ]
+        };
+
+        const communityStats = {
+            topEarnerThisHour: {
+                address: '0x742d35Cc6634C0532925a3b844Bc454e4438f44e',
+                ixp: 250
+            },
+            totalRedemptionsThisWeek: 2345,
+            activeUsersToday: 8912
+        };
+
+        const automaticRewards = [
+            {
+                id: 'signup',
+                icon: '🎉',
+                title: 'New User Sign-Up',
+                ixp: 100,
+                description: 'Automatically awarded upon successful account creation and wallet connection.',
+                limit: 'One-time reward'
+            },
+            {
+                id: 'referral',
+                icon: '👥',
+                title: 'Successful Referral',
+                ixp: 250,
+                description: 'Awarded when a new user signs up with your unique referral code/link.',
+                limit: 'Unlimited'
+            },
+            {
+                id: 'weekly_referral',
+                icon: '🏆',
+                title: 'Weekly Referral Bonus',
+                ixp: 1000,
+                description: 'Awarded weekly for having 5 or more successful referrals in the prior 7-day period.',
+                limit: 'Weekly'
+            },
+            {
+                id: 'intent',
+                icon: '🎯',
+                title: 'Creating an Intent',
+                ixp: 25,
+                description: 'Awarded upon successful intent creation.',
+                limit: 'Limited to 3 times per day'
+            },
+            {
+                id: 'feedback',
+                icon: '💬',
+                title: 'Submitting Feedback',
+                ixp: 50,
+                description: 'Awarded when you submit feedback through the in-app form.',
+                limit: 'Limited to 3 times per day'
+            }
+        ];
+
+        const claimableRewards = [
+            {
+                id: 'social_share',
+                icon: '📱',
+                title: 'Social Media Share',
+                ixp: 100,
+                description: 'Share Inomy on your social media to earn IXP.',
+                limit: 'Once per day',
+                action: 'Share Now'
+            },
+            {
+                id: 'twitter_follow',
+                icon: '🐦',
+                title: 'Follow on Twitter',
+                ixp: 50,
+                description: 'Follow @Inomy on Twitter.',
+                limit: 'One-time reward',
+                action: 'Follow & Claim'
+            },
+            {
+                id: 'discord_join',
+                icon: '💬',
+                title: 'Join Discord',
+                ixp: 50,
+                description: 'Join our Discord community.',
+                limit: 'One-time reward',
+                action: 'Join & Claim'
+            }
+        ];
+
+        const manualRewards = [
+            {
+                id: 'bug_report',
+                icon: '🐛',
+                title: 'Report a Verified Bug',
+                ixp: 100,
+                description: 'Admin verifies your bug report is valid and unique.',
+                limit: 'Unlimited verified bugs',
+                note: 'Manually awarded by admin'
+            },
+            {
+                id: 'user_interview',
+                icon: '🎤',
+                title: 'User Interview Participation',
+                ixp: 500,
+                description: 'Complete a scheduled interview or usability test.',
+                limit: 'One-time reward',
+                note: 'Manually awarded by admin'
+            },
+            {
+                id: 'discretionary',
+                icon: '⭐',
+                title: 'Discretionary Bonus',
+                ixp: 'Variable',
+                description: 'Exceptional contributions like winning contests or providing extraordinary assistance.',
+                limit: 'Case by case',
+                note: 'Manually awarded by admin'
+            }
+        ];
+
+        const leaderboardData = {
+            daily: [
+                { rank: 1, address: '0x742d35Cc6634C0532925a3b844Bc454e4438f44e', points: 3840, flairs: 52 },
+                { rank: 2, address: '0x8Ba1f109551bD432803012645Ac136ddd64DBA72', points: 3620, flairs: 48 },
+                { rank: 3, address: '0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e', points: 3410, flairs: 45 },
+                { rank: 4, address: '0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC', points: 3180, flairs: 43 },
+                { rank: 5, address: '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD', points: 2950, flairs: 41 },
+                { rank: 23, address: '0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed', points: 2450, flairs: 7, isUser: true }
+            ],
+            weekly: [
+                { rank: 1, address: '0x6fC21092DA55B392b045eD78F4732bff3C580e2c', points: 18420, flairs: 65 },
+                { rank: 2, address: '0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb', points: 17890, flairs: 61 },
+                { rank: 3, address: '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045', points: 16720, flairs: 58 },
+                { rank: 4, address: '0x4E83362412b8d1A29B0f0F6e8e8E4c56c0E3E1F9', points: 15980, flairs: 55 },
+                { rank: 5, address: '0x9A2f9C8E1b5F4A3D2E6C8F7B4A3D9E1F2C5B8A7D', points: 14520, flairs: 52 },
+                { rank: 23, address: '0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed', points: 12300, flairs: 7, isUser: true }
+            ],
+            monthly: [
+                { rank: 1, address: '0x2C7536E3605D9C16a7a3D7b1898e529396a65c23', points: 72450, flairs: 89 },
+                { rank: 2, address: '0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826', points: 68900, flairs: 84 },
+                { rank: 3, address: '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D', points: 65300, flairs: 81 },
+                { rank: 4, address: '0x1A2B3C4D5E6F7A8B9C0D1E2F3A4B5C6D7E8F9A0B', points: 61750, flairs: 78 },
+                { rank: 5, address: '0xB8C3F2E1D9A5B4C3F2E1D9A8B7C6D5E4F3A2B1C0', points: 58900, flairs: 75 },
+                { rank: 23, address: '0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed', points: 48900, flairs: 7, isUser: true }
+            ]
+        };
+
+        // Helper function to shorten address
+        function shortenAddress(address) {
+            return `${address.slice(0, 6)}...${address.slice(-4)}`;
+        }
+
+        // Helper function to generate color from address
+        function getColorFromAddress(address) {
+            const hash = address.slice(2, 8);
+            return `#${hash}`;
+        }
+
+        const badges = [
+            // Leaderboard Wins (Gift Card Unlock)
+            { id: 1, category: 'leaderboard', name: 'Daily Champion', icon: '🥇', unlocked: true, rarity: 'legendary', count: '3x won', enablesGiftCards: true, value: 10 },
+            { id: 2, category: 'leaderboard', name: 'Daily Runner-up', icon: '🥈', unlocked: true, rarity: 'legendary', count: '1x won', enablesGiftCards: true, value: 10 },
+            { id: 3, category: 'leaderboard', name: 'Daily Bronze', icon: '🥉', unlocked: true, rarity: 'legendary', count: '1x won', enablesGiftCards: true, value: 5 },
+            { id: 4, category: 'leaderboard', name: 'Weekly Champion', icon: '🏆', unlocked: true, rarity: 'legendary', count: '2x won', enablesGiftCards: true, value: 25 },
+            { id: 5, category: 'leaderboard', name: 'Weekly Elite', icon: '💎', unlocked: false, rarity: 'legendary', count: 'Locked', enablesGiftCards: true, value: 10 },
+            { id: 6, category: 'leaderboard', name: 'Weekly Star', icon: '⭐', unlocked: false, rarity: 'legendary', count: 'Locked', enablesGiftCards: true, value: 10 },
+            { id: 7, category: 'leaderboard', name: 'Monthly King', icon: '👑', unlocked: false, rarity: 'legendary', count: 'Locked', enablesGiftCards: true, value: 50 },
+            { id: 8, category: 'leaderboard', name: 'Monthly Legend', icon: '🔥', unlocked: false, rarity: 'legendary', count: 'Locked', enablesGiftCards: true, value: 25 },
+            { id: 9, category: 'leaderboard', name: 'Monthly Hero', icon: '💫', unlocked: false, rarity: 'legendary', count: 'Locked', enablesGiftCards: true, value: 25 },
+
+            // Search & Activity
+            { id: 10, category: 'search', name: 'First Search', icon: '🔍', unlocked: true, rarity: 'common', count: '1/1' },
+            { id: 11, category: 'search', name: 'Explorer', icon: '🎯', unlocked: true, rarity: 'common', count: '10/10' },
+            { id: 12, category: 'search', name: 'Power User', icon: '🚀', unlocked: false, rarity: 'rare', count: '45/100' },
+            { id: 13, category: 'search', name: 'Search Master', icon: '⚡', unlocked: false, rarity: 'epic', count: '45/1000' },
+
+            // Streaks & Loyalty
+            { id: 14, category: 'streak', name: 'Week Warrior', icon: '📅', unlocked: true, rarity: 'common', count: '7/7' },
+            { id: 15, category: 'streak', name: 'Month Master', icon: '🔥', unlocked: false, rarity: 'rare', count: '12/30' },
+            { id: 16, category: 'streak', name: 'Quarter Champion', icon: '💪', unlocked: false, rarity: 'epic', count: '12/90' },
+            { id: 17, category: 'streak', name: 'Year Legend', icon: '👑', unlocked: false, rarity: 'legendary', count: '12/365' },
+
+            // Referral Network
+            { id: 18, category: 'referral', name: 'Connector', icon: '👥', unlocked: true, rarity: 'common', count: '1/1' },
+            { id: 19, category: 'referral', name: 'Networker', icon: '🤝', unlocked: false, rarity: 'rare', count: '1/5' },
+            { id: 20, category: 'referral', name: 'Influencer', icon: '📢', unlocked: false, rarity: 'epic', count: '1/10' },
+
+            // Privacy Champion
+            { id: 21, category: 'privacy', name: 'Privacy Newbie', icon: '🛡️', unlocked: true, rarity: 'common', count: '100/100' },
+            { id: 22, category: 'privacy', name: 'Ghost Mode', icon: '👻', unlocked: false, rarity: 'rare', count: '450/1000' },
+            { id: 23, category: 'privacy', name: 'Privacy Ninja', icon: '🥷', unlocked: false, rarity: 'legendary', count: '450/10000' },
+
+            // Community & Social
+            { id: 24, category: 'community', name: 'Twitter Follower', icon: '🐦', unlocked: true, rarity: 'common', count: 'Claimed' },
+            { id: 25, category: 'community', name: 'Discord Member', icon: '💬', unlocked: false, rarity: 'common', count: 'Join Discord' },
+            { id: 26, category: 'community', name: 'Bug Hunter', icon: '🐛', unlocked: false, rarity: 'rare', count: 'Report bugs' },
+
+            // Special Events
+            { id: 27, category: 'special', name: 'Launch Week Hero', icon: '🚀', unlocked: true, rarity: 'legendary', count: 'Limited' },
+            { id: 28, category: 'special', name: 'Feedback Giver', icon: '📝', unlocked: true, rarity: 'common', count: '5 given' }
+        ];
+
+        const giftCards = [
+            {
+                id: 1,
+                name: 'Amazon Gift Card',
+                icon: '🛒',
+                description: '$10 Amazon credit',
+                provider: 'amazon.com',
+                gradient: 'linear-gradient(135deg, #FF9900 0%, #FF6B00 100%)'
+            },
+            {
+                id: 2,
+                name: 'Apple Gift Card',
+                icon: '',
+                description: '$10 App Store & iTunes',
+                provider: 'apple.com',
+                gradient: 'linear-gradient(135deg, #000000 0%, #434343 100%)'
+            },
+            {
+                id: 3,
+                name: 'Starbucks Gift Card',
+                icon: '☕',
+                description: '$5 Starbucks credit',
+                provider: 'starbucks.com',
+                gradient: 'linear-gradient(135deg, #00704A 0%, #005533 100%)'
+            },
+            {
+                id: 4,
+                name: 'Target Gift Card',
+                icon: '🎯',
+                description: '$25 Target credit',
+                provider: 'target.com',
+                gradient: 'linear-gradient(135deg, #CC0000 0%, #990000 100%)'
+            },
+            {
+                id: 5,
+                name: 'Visa Prepaid Card',
+                icon: '💳',
+                description: '$50 Visa prepaid',
+                provider: 'visa.com',
+                gradient: 'linear-gradient(135deg, #1A1F71 0%, #0F1457 100%)'
+            },
+            {
+                id: 6,
+                name: 'Best Buy Gift Card',
+                icon: '🎮',
+                description: '$25 Best Buy credit',
+                provider: 'bestbuy.com',
+                gradient: 'linear-gradient(135deg, #0046BE 0%, #003380 100%)'
+            }
+        ];
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            renderLeaderboard('daily');
+            renderBadges();
+            renderGiftCards();
+            renderCommunityStats();
+            renderEarnSection();
+            setupEventListeners();
+        });
+
+        // Earn Section Functions
+        function renderEarnSection() {
+            renderAutomaticRewards();
+            renderClaimableRewards();
+        }
+
+        function renderAutomaticRewards() {
+            const list = document.getElementById('automaticRewardsSection');
+
+            list.innerHTML = automaticRewards.map(reward => `
+                <div class="reward-item">
+                    <div class="reward-header">
+                        <div>
+                            <div class="reward-title">
+                                <span>${reward.icon}</span>
+                                <span>${reward.title}</span>
+                            </div>
+                        </div>
+                        <div class="reward-ixp">+${reward.ixp}</div>
+                    </div>
+                    <div class="reward-description">${reward.description}</div>
+                    <div class="reward-limit">${reward.limit}</div>
+                </div>
+            `).join('');
+        }
+
+        function renderClaimableRewards() {
+            const list = document.getElementById('claimableRewardsSection');
+
+            // Combine claimable (social actions) and manual rewards
+            const allRewards = [...claimableRewards, ...manualRewards];
+
+            list.innerHTML = allRewards.map(reward => {
+                const isClaimed = userData.claimedRewards.includes(reward.id);
+                const isManual = manualRewards.some(r => r.id === reward.id);
+
+                return `
+                    <div class="reward-item">
+                        <div class="reward-header">
+                            <div>
+                                <div class="reward-title">
+                                    <span>${reward.icon}</span>
+                                    <span>${reward.title}</span>
+                                </div>
+                                <div class="reward-ixp">+${reward.ixp}</div>
+                            </div>
+                            ${!isManual ? `
+                                <button
+                                    class="claim-btn-top ${isClaimed ? 'claimed' : 'primary'}"
+                                    onclick="${isClaimed ? '' : `claimReward('${reward.id}')`}"
+                                    ${isClaimed ? 'disabled' : ''}>
+                                    ${isClaimed ? '✓ Claimed' : 'Claim'}
+                                </button>
+                            ` : ''}
+                        </div>
+                        <div class="reward-description">${reward.description}</div>
+                        <div class="reward-limit">${reward.limit}${reward.note ? ' • ' + reward.note : ''}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function claimReward(rewardId) {
+            const reward = claimableRewards.find(r => r.id === rewardId);
+            if (!reward) return;
+
+            // In production, this would make an API call
+            // For demo, just update the UI
+            userData.claimedRewards.push(rewardId);
+            userData.ixp += reward.ixp;
+
+            // Update IXP balance
+            document.getElementById('ixpBalance').textContent = userData.ixp.toLocaleString();
+
+            // Re-render claimable rewards to show claimed state
+            renderClaimableRewards();
+
+            // Show success message
+            alert(`🎉 Congratulations! You earned ${reward.ixp} IXP for "${reward.title}"!`);
+        }
+
+        // Tab switching
+        function setupEventListeners() {
+            // Tab navigation
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const targetTab = this.dataset.tab;
+
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+
+                    this.classList.add('active');
+                    document.getElementById(targetTab).classList.add('active');
+                });
+            });
+
+            // Leaderboard filters
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const period = this.dataset.period;
+
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+
+                    renderLeaderboard(period);
+                });
+            });
+
+            // Flair category filters
+            document.querySelectorAll('.flair-filter').forEach(filter => {
+                filter.addEventListener('click', function() {
+                    const category = this.dataset.category;
+
+                    document.querySelectorAll('.flair-filter').forEach(f => f.classList.remove('active'));
+                    this.classList.add('active');
+
+                    currentFlairCategory = category;
+                    renderBadges(category);
+                });
+            });
+        }
+
+        // Render functions
+        function renderLeaderboard(period) {
+            const list = document.getElementById('leaderboardList');
+            const data = leaderboardData[period];
+
+            list.innerHTML = data.map(user => {
+                const color = getColorFromAddress(user.address);
+                return `
+                    <div class="leaderboard-item" style="${user.isUser ? 'background: rgba(102, 126, 234, 0.05); border: 1px solid rgba(102, 126, 234, 0.2);' : ''}">
+                        <div class="leaderboard-rank ${user.rank <= 3 ? 'top' : ''}">${user.rank}</div>
+                        <div class="leaderboard-avatar" style="background: ${color};">
+                            ${user.address.slice(2, 4)}
+                        </div>
+                        <div class="leaderboard-info">
+                            <div class="leaderboard-name">${shortenAddress(user.address)}${user.isUser ? ' 🎯' : ''}</div>
+                            <div class="leaderboard-subtitle">
+                                <span>${user.flairs} flairs</span>
+                                <span class="copy-address" onclick="copyAddress('${user.address}')" title="Copy address">
+                                    <i class="fas fa-copy" style="font-size: 10px;"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="leaderboard-points">${user.points.toLocaleString()}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function copyAddress(address) {
+            navigator.clipboard.writeText(address).then(() => {
+                alert('Address copied to clipboard!');
+            });
+        }
+
+        let currentFlairCategory = 'all';
+
+        function renderBadges(category = 'all') {
+            const grid = document.getElementById('badgesGrid');
+            const filteredBadges = category === 'all'
+                ? badges
+                : badges.filter(b => b.category === category);
+
+            grid.innerHTML = filteredBadges.map(badge => `
+                <div class="badge-card ${badge.rarity} ${!badge.unlocked ? 'locked' : ''}" style="${badge.enablesGiftCards ? 'border: 2px solid #F59E0B;' : ''}">
+                    ${!badge.unlocked ? '<div class="badge-lock"><i class="fas fa-lock"></i></div>' : ''}
+                    ${badge.enablesGiftCards && badge.unlocked ? '<div class="badge-lock" style="background: #F59E0B;"><i class="fas fa-gift"></i></div>' : ''}
+                    <div class="badge-icon">${badge.icon}</div>
+                    <div class="badge-name">${badge.name}</div>
+                    <div class="badge-count">${badge.count}</div>
+                    ${badge.enablesGiftCards && badge.unlocked ? `<div style="font-size: 10px; color: #F59E0B; margin-top: 4px; font-weight: 600;">$${badge.value}</div>` : ''}
+                </div>
+            `).join('');
+        }
+
+        function renderGiftCards() {
+            const grid = document.getElementById('giftcardGrid');
+            const canClaim = userData.hasLeaderboardWin;
+            const remainingBudget = 600 - userData.annualRedemptions.totalRedeemed;
+
+            grid.innerHTML = giftCards.map(card => {
+                const cardValue = parseInt(card.description.match(/\$(\d+)/)[1]);
+                const canAfford = remainingBudget >= cardValue;
+                const isClickable = canClaim && canAfford;
+
+                return `
+                    <div class="giftcard-card" onclick="${isClickable ? `openGiftCardModal(${card.id})` : ''}" style="${!canAfford ? 'opacity: 0.6;' : ''}">
+                        <div class="giftcard-image" style="background: ${card.gradient}">
+                            ${card.icon}
+                        </div>
+                        <div class="giftcard-content">
+                            <div class="giftcard-title">${card.name}</div>
+                            <div class="giftcard-description">${card.description}</div>
+                            <div class="giftcard-footer">
+                                <div class="giftcard-price" style="font-size: 13px; font-family: 'Outfit', sans-serif;">
+                                    ${!canClaim ? '🔒 Win Top 3' : (!canAfford ? '⚠️ Budget limit' : 'Available')}
+                                </div>
+                                <button class="giftcard-btn ${!isClickable ? 'disabled' : ''}">
+                                    ${!canClaim ? 'Locked' : (!canAfford ? 'Over Budget' : 'Claim')}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderCommunityStats() {
+            const container = document.getElementById('communityStatsBar');
+            const color = getColorFromAddress(communityStats.topEarnerThisHour.address);
+
+            container.innerHTML = `
+                <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); border-radius: 12px; padding: 16px; margin-bottom: 20px; border: 1px solid rgba(102, 126, 234, 0.2);">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+                        <div>
+                            <div style="font-size: 11px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">🔥 Top Earner This Hour</div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <div style="width: 24px; height: 24px; background: ${color}; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; font-family: 'Courier New', monospace;">
+                                    ${communityStats.topEarnerThisHour.address.slice(2, 4)}
+                                </div>
+                                <div>
+                                    <div style="font-size: 12px; font-weight: 600; font-family: 'Courier New', monospace;">${shortenAddress(communityStats.topEarnerThisHour.address)}</div>
+                                    <div style="font-size: 11px; color: #667eea; font-weight: 600;">${communityStats.topEarnerThisHour.ixp.toLocaleString()} IXP</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="font-size: 11px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">👥 Active Today</div>
+                            <div style="font-size: 20px; font-weight: 700; color: var(--text-primary);">${communityStats.activeUsersToday.toLocaleString()}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Modal functions
+        function openGiftCardModal(cardId) {
+            const card = giftCards.find(c => c.id === cardId);
+            if (!card) return;
+
+            const cardValue = parseInt(card.description.match(/\$(\d+)/)[1]);
+            const remainingBudget = 600 - userData.annualRedemptions.totalRedeemed;
+
+            document.getElementById('modalIcon').innerHTML = card.icon;
+            document.getElementById('modalIcon').style.background = card.gradient;
+            document.getElementById('modalTitle').textContent = card.name;
+            document.getElementById('modalDescription').innerHTML = `
+                You're about to claim <strong>${card.description}</strong>.<br><br>
+                <div style="background: rgba(102, 126, 234, 0.1); padding: 12px; border-radius: 8px; margin: 16px 0;">
+                    <div style="font-size: 12px; color: #667eea; margin-bottom: 4px;">Annual Budget Check</div>
+                    <div style="font-size: 14px; font-weight: 600;">
+                        $${cardValue} of $${remainingBudget} remaining
+                    </div>
+                </div>
+                You'll be redirected to <strong>${card.provider}</strong> to complete KYC verification and redeem your gift card. This process is required for security purposes.
+            `;
+
+            document.getElementById('redeemBtn').onclick = () => redeemGiftCard(card, cardValue);
+            document.getElementById('giftcardModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('giftcardModal').classList.remove('active');
+        }
+
+        function redeemGiftCard(card, cardValue) {
+            // Check annual limit
+            const remainingBudget = 600 - userData.annualRedemptions.totalRedeemed;
+
+            if (cardValue > remainingBudget) {
+                alert(`⚠️ Annual redemption limit exceeded!\n\nYou have $${remainingBudget} remaining in your $600 annual budget.\nThis gift card requires $${cardValue}.`);
+                closeModal();
+                return;
+            }
+
+            // In a real app, this would make an API call to process the redemption
+            // For demo, update local state
+            userData.annualRedemptions.totalRedeemed += cardValue;
+            userData.annualRedemptions.redemptions.push({
+                date: new Date().toISOString().split('T')[0],
+                type: card.name,
+                value: cardValue
+            });
+
+            // Update UI
+            document.getElementById('redemptionTotal').textContent = userData.annualRedemptions.totalRedeemed;
+            document.getElementById('redemptionRemaining').textContent = 600 - userData.annualRedemptions.totalRedeemed;
+            document.getElementById('redemptionProgress').style.width = `${(userData.annualRedemptions.totalRedeemed / 600) * 100}%`;
+
+            // Re-render gift cards to update availability
+            renderGiftCards();
+
+            alert(`🎉 Redemption successful!\n\nRedirecting to ${card.provider} for KYC and redemption...\n\nYou have redeemed $${userData.annualRedemptions.totalRedeemed} of your $600 annual limit.\n\nNote: This is a demo. In production, you would be redirected to the gift card provider's website.`);
+            closeModal();
+        }
+
+        // IXP History Modal Functions
+        function openIXPHistoryModal() {
+            document.getElementById('modalIXPBalance').textContent = userData.ixp.toLocaleString();
+            renderIXPHistory();
+            document.getElementById('ixpHistoryModal').classList.add('active');
+        }
+
+        function closeIXPHistoryModal() {
+            document.getElementById('ixpHistoryModal').classList.remove('active');
+        }
+
+        function renderIXPHistory() {
+            const list = document.getElementById('ixpHistoryList');
+
+            list.innerHTML = userData.ixpHistory.map(transaction => {
+                const isEarn = transaction.type === 'earn';
+                return `
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid var(--border-color); transition: background 0.2s;">
+                        <div style="flex: 1;">
+                            <div style="font-size: 14px; font-weight: 600; margin-bottom: 2px;">${transaction.action}</div>
+                            <div style="font-size: 11px; color: var(--text-secondary);">${transaction.date}</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-size: 16px; font-weight: 700; color: ${isEarn ? '#10B981' : '#EF4444'};">
+                                ${isEarn ? '+' : '-'}${transaction.amount} IXP
+                            </div>
+                            <div style="font-size: 11px; color: var(--text-secondary);">Balance: ${transaction.balance.toLocaleString()}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Budget Modal Functions
+        function openBudgetModal() {
+            // Update values in modal
+            document.getElementById('modalRedemptionTotal').textContent = userData.annualRedemptions.totalRedeemed;
+            document.getElementById('modalRedemptionRemaining').textContent = 600 - userData.annualRedemptions.totalRedeemed;
+            document.getElementById('modalRedemptionProgress').style.width = `${(userData.annualRedemptions.totalRedeemed / 600) * 100}%`;
+
+            document.getElementById('budgetModal').classList.add('active');
+        }
+
+        function closeBudgetModal() {
+            document.getElementById('budgetModal').classList.remove('active');
+        }
+
+        // Close modal on outside click
+        document.getElementById('giftcardModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        document.getElementById('ixpHistoryModal').addEventListener('click', function(e) {
+            if (e.target === this) closeIXPHistoryModal();
+        });
+
+        document.getElementById('budgetModal').addEventListener('click', function(e) {
+            if (e.target === this) closeBudgetModal();
+        });
+    </script>
+</body>
+</html>

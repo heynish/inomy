@@ -613,6 +613,179 @@
             }
         }
 
+        /* Differentiator Section */
+        .differentiator-section {
+            padding: 60px 60px;
+            background: #0a0a0a;
+        }
+
+        .differentiator-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .option-label-diff {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            color: #6366f1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .differentiator-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        /* Option A: Comparison */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 30px;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .comparison-col {
+            text-align: center;
+        }
+
+        .comparison-label {
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .comparison-item {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            color: #b0b0b0;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .comparison-item:last-child {
+            border-bottom: none;
+        }
+
+        .comparison-arrow {
+            font-size: 24px;
+            color: #6366f1;
+        }
+
+        .comparison-col.highlight .comparison-item {
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        /* Option B: Visual Flow */
+        .flow-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .flow-step {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            color: #e0e0e0;
+            padding: 12px 20px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .flow-arrow {
+            color: #6366f1;
+            font-size: 20px;
+        }
+
+        /* Option C: Badges */
+        .badge-row {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .badge-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 25px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 50px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .badge-icon {
+            font-size: 20px;
+        }
+
+        /* Option D: Statement */
+        .statement-text {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 18px;
+            color: #e0e0e0;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .differentiator-section {
+                padding: 50px 30px;
+            }
+
+            .differentiator-title {
+                font-size: 26px;
+                margin-bottom: 25px;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .comparison-arrow {
+                transform: rotate(90deg);
+            }
+
+            .flow-diagram {
+                flex-direction: column;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+
+            .badge-row {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .statement-text {
+                font-size: 16px;
+            }
+        }
+
         /* How It Works Section */
         .how-it-works-section {
             padding: 100px 60px;
@@ -998,8 +1171,10 @@
 
         /* Rewards Section */
         .rewards-section {
-            padding: 100px 60px;
+            padding: 120px 60px;
             background: linear-gradient(180deg, #f8f9ff 0%, #ffffff 100%);
+            position: relative;
+            overflow: hidden;
         }
 
         .rewards-container {
@@ -1007,81 +1182,407 @@
             margin: 0 auto;
         }
 
-        .rewards-intro {
+        .rewards-subtitle {
             font-family: 'DM Sans', sans-serif;
             font-size: 18px;
-            color: #4a4a4a;
+            color: #6b7280;
             text-align: center;
-            max-width: 600px;
-            margin: 0 auto 60px;
+            max-width: 700px;
+            margin: 0 auto 100px;
             line-height: 1.6;
         }
 
-        .rewards-visual {
-            margin-top: 60px;
-            text-align: center;
+        /* Orbit Container */
+        .rewards-orbit {
+            position: relative;
+            width: 700px;
+            height: 700px;
+            margin: 0 auto;
         }
 
-        .rewards-cycle {
-            margin-bottom: 80px;
-            padding: 40px 0;
-        }
-
-        .cycle-text {
-            font-family: 'Outfit', sans-serif;
-            font-size: 48px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            line-height: 1.2;
-            text-align: center;
+        /* Central Glowing Orb */
+        .rewards-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 24px;
+            box-shadow:
+                0 0 60px rgba(99, 102, 241, 0.4),
+                0 0 120px rgba(99, 102, 241, 0.2),
+                inset 0 0 60px rgba(255, 255, 255, 0.1);
+            z-index: 10;
+            animation: pulse 3s ease-in-out infinite;
         }
 
-        .cycle-word {
-            display: inline-block;
-            transition: all 0.3s ease;
-            color: #0a0a0a;
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow:
+                    0 0 60px rgba(99, 102, 241, 0.4),
+                    0 0 120px rgba(99, 102, 241, 0.2),
+                    inset 0 0 60px rgba(255, 255, 255, 0.1);
+            }
+            50% {
+                box-shadow:
+                    0 0 80px rgba(99, 102, 241, 0.6),
+                    0 0 160px rgba(99, 102, 241, 0.3),
+                    inset 0 0 80px rgba(255, 255, 255, 0.2);
+            }
         }
 
-        .cycle-arrow {
-            font-size: 20px;
-            color: #6366f1;
+        .rewards-center-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            color: white;
+            letter-spacing: 3px;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
         }
 
-        .cycle-word:hover {
-            transform: scale(1.1);
-            text-shadow: 0 0 20px currentColor;
+        /* Orbiting Cards */
+        .orbit-card {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border: 2px solid #f8f9ff;
+            min-width: 160px;
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 5;
         }
 
-        .rewards-numbers {
-            display: flex;
-            justify-content: center;
-            gap: 120px;
+        .orbit-card:hover {
+            transform: scale(1.05) !important;
+            box-shadow: 0 15px 50px rgba(99, 102, 241, 0.2);
+            border-color: #6366f1;
+            z-index: 20;
         }
 
-        .number-stat {
+        .orbit-card.settled {
+            opacity: 1;
+        }
+
+        /* Initial orbiting positions (before settling) */
+        .orbit-card.orbiting {
+            animation: orbit 8s linear infinite;
+        }
+
+        @keyframes orbit {
+            from { transform: rotate(0deg) translateX(300px) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(300px) rotate(-360deg); }
+        }
+
+        /* Settled positions - circular layout */
+        .orbit-card-1 {
+            transform: translate(-50%, -50%) rotate(0deg) translateX(280px) rotate(0deg);
+        }
+        .orbit-card-2 {
+            transform: translate(-50%, -50%) rotate(45deg) translateX(280px) rotate(-45deg);
+        }
+        .orbit-card-3 {
+            transform: translate(-50%, -50%) rotate(90deg) translateX(280px) rotate(-90deg);
+        }
+        .orbit-card-4 {
+            transform: translate(-50%, -50%) rotate(135deg) translateX(280px) rotate(-135deg);
+        }
+        .orbit-card-5 {
+            transform: translate(-50%, -50%) rotate(180deg) translateX(280px) rotate(-180deg);
+        }
+        .orbit-card-6 {
+            transform: translate(-50%, -50%) rotate(225deg) translateX(280px) rotate(-225deg);
+        }
+        .orbit-card-7 {
+            transform: translate(-50%, -50%) rotate(270deg) translateX(280px) rotate(-270deg);
+        }
+        .orbit-card-8 {
+            transform: translate(-50%, -50%) rotate(315deg) translateX(280px) rotate(-315deg);
+        }
+
+        .orbit-card-icon {
+            font-size: 36px;
+            margin-bottom: 12px;
             text-align: center;
         }
 
-        .stat-value {
+        .orbit-card-title {
             font-family: 'Outfit', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: #0a0a0a;
+            margin-bottom: 6px;
+            text-align: center;
+        }
+
+        .orbit-card-value {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        /* OPTION 2: BENTO GRID */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 200px);
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .bento-card {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 2px solid #f8f9ff;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .bento-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .bento-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.15);
+            border-color: #6366f1;
+        }
+
+        .bento-card-large {
+            grid-column: span 2;
+        }
+
+        .bento-card-icon {
             font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .bento-card-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #0a0a0a;
+            margin-bottom: 8px;
+        }
+
+        .bento-card-value {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* OPTION 3: 3D CARD STACK */
+        .card-stack-container {
+            position: relative;
+            width: 400px;
+            height: 500px;
+            margin: 0 auto;
+            perspective: 1200px;
+        }
+
+        .stack-card {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 280px;
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            border: 2px solid #f8f9ff;
+            transform: translate(-50%, -50%) rotateY(0deg);
+            transform-style: preserve-3d;
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+        }
+
+        .stack-card:hover {
+            transform: translate(-50%, -50%) rotateY(10deg) translateZ(20px);
+        }
+
+        .card-stack-container.fanned .stack-card-1 {
+            transform: translate(-50%, -50%) translateX(-200px) rotate(-15deg);
+        }
+
+        .card-stack-container.fanned .stack-card-2 {
+            transform: translate(-50%, -50%) translateX(-130px) rotate(-10deg);
+        }
+
+        .card-stack-container.fanned .stack-card-3 {
+            transform: translate(-50%, -50%) translateX(-65px) rotate(-5deg);
+        }
+
+        .card-stack-container.fanned .stack-card-4 {
+            transform: translate(-50%, -50%) translateX(0) rotate(0deg);
+        }
+
+        .card-stack-container.fanned .stack-card-5 {
+            transform: translate(-50%, -50%) translateX(65px) rotate(5deg);
+        }
+
+        .card-stack-container.fanned .stack-card-6 {
+            transform: translate(-50%, -50%) translateX(130px) rotate(10deg);
+        }
+
+        .card-stack-container.fanned .stack-card-7 {
+            transform: translate(-50%, -50%) translateX(195px) rotate(15deg);
+        }
+
+        .card-stack-container.fanned .stack-card-8 {
+            transform: translate(-50%, -50%) translateX(260px) rotate(20deg);
+        }
+
+        .stack-card-icon {
+            font-size: 56px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .stack-card-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #0a0a0a;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .stack-card-value {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 32px;
             font-weight: 800;
             background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        /* OPTION 4: PARTICLE SHOWER */
+        .particle-container {
+            position: relative;
+            width: 900px;
+            height: 600px;
+            margin: 0 auto;
+        }
+
+        .particle-buckets {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .particle-bucket {
+            background: white;
+            border-radius: 20px 20px 0 0;
+            padding: 24px;
+            box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid #f8f9ff;
+            border-bottom: none;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .particle-bucket::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%);
+        }
+
+        .bucket-icon {
+            font-size: 40px;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .bucket-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #0a0a0a;
+            text-align: center;
             margin-bottom: 8px;
         }
 
-        .stat-desc {
+        .bucket-value {
             font-family: 'DM Sans', sans-serif;
-            font-size: 16px;
-            color: #6b7280;
-            font-weight: 500;
+            font-size: 20px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        .particle {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0;
+            animation: fall 3s ease-in forwards;
+        }
+
+        @keyframes fall {
+            0% {
+                opacity: 0;
+                transform: translateY(-100px) rotate(0deg);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(600px) rotate(360deg);
+            }
+        }
+
+        /* Section labels */
+        .option-label {
+            text-align: center;
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #6366f1;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
         }
 
         /* Reviews Section */
@@ -2929,8 +3430,10 @@
 <body>
     <!-- Header -->
     <header class="header">
-        <div class="logo">inomy</div>
+        <a href="index.html" class="logo" style="text-decoration: none; cursor: pointer;">inomy</a>
         <nav class="nav-menu">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="rewards.html" class="nav-link">Rewards</a>
             <button class="header-btn">Get Started</button>
         </nav>
     </header>
@@ -3012,6 +3515,17 @@
         </div>
     </section>
 
+    <!-- Differentiator Section -->
+    <section class="differentiator-section">
+        <div class="differentiator-container">
+            <h2 class="differentiator-title">Not Another AI Shopping Assistant</h2>
+
+            <p class="statement-text">
+                Your shopping intent is valuable. Most platforms sell it. Here, you own it, sellers bid for it, and you earn from it.
+            </p>
+        </div>
+    </section>
+
     <!-- How It Works Section -->
     <section class="how-it-works-section" id="how-it-works">
         <h2 class="section-title">How It <span class="gradient-text">Works</span></h2>
@@ -3021,9 +3535,9 @@
                     <div class="step-number">01</div>
                 </div>
                 <div class="step-content">
-                    <h3 class="step-title">Chat Your Intent</h3>
+                    <h3 class="step-title">Just Tell Us What You Need</h3>
                     <p class="step-description">
-                        Tell our AI what you're looking for in natural language. "I need a laptop for video editing under $2000" — that simple.
+                        "I need a quiet dishwasher that actually fits under my counter." Our AI gets it.
                     </p>
                 </div>
             </div>
@@ -3033,9 +3547,9 @@
                     <div class="step-number">02</div>
                 </div>
                 <div class="step-content">
-                    <h3 class="step-title">Get Smart Results</h3>
+                    <h3 class="step-title">Our AI Handles The Boring Part</h3>
                     <p class="step-description">
-                        Our neutral AI searches across sellers and presents the best matches with transparent pricing. No ads, no bias — just results.
+                        Our AI searches across every major retailer and shows you what ACTUALLY matches—not what paid to be on top. Real prices. Real reviews. Real fast.
                     </p>
                 </div>
             </div>
@@ -3045,9 +3559,9 @@
                     <div class="step-number">03</div>
                 </div>
                 <div class="step-content">
-                    <h3 class="step-title">Buy & Earn Points</h3>
+                    <h3 class="step-title">Buy Anywhere, Get Paid Everywhere</h3>
                     <p class="step-description">
-                        Purchase directly from seller websites while earning IXP points for your shopping activity. You decide where to buy.
+                        Click through to buy from the actual retailer site. We're not a middleman—we're your scout. And you earn IXP points for the search, the comparison, the click, all of it.
                     </p>
                 </div>
             </div>
@@ -3151,9 +3665,9 @@
                 <div class="feature-icon">
                     <i class="fas fa-clock"></i>
                 </div>
-                <h3 class="feature-title">Save Hours, Not Just Money</h3>
+                <h3 class="feature-title">Stop the 5-Hour Research Rabbit Hole</h3>
                 <p class="feature-description">
-                    Stop spending 5+ hours researching products. Our neutral engine cuts through the noise to find what you actually need in minutes.
+                    5+ hours researching a dishwasher? That's a part-time job. Let our AI handle the boring spreadsheets and endless tabs. You just pick the winner.
                 </p>
             </div>
 
@@ -3161,9 +3675,9 @@
                 <div class="feature-icon">
                     <i class="fas fa-hand-holding-usd"></i>
                 </div>
-                <h3 class="feature-title">Get Paid for Your Attention</h3>
+                <h3 class="feature-title">Finally, Shopping That Pays YOU</h3>
                 <p class="feature-description">
-                    Advertisers pay up to $10+ for your shopping intent. Unlike big tech, we share this value directly with you through IXP rewards.
+                    Every time you search for a product, someone makes money. We decided to flip that. You search, you compare, you earn IXP. Your intent, your rewards.
                 </p>
             </div>
 
@@ -3171,9 +3685,9 @@
                 <div class="feature-icon">
                     <i class="fas fa-balance-scale"></i>
                 </div>
-                <h3 class="feature-title">Neutral Discovery Engine</h3>
+                <h3 class="feature-title">No Rigged Results, Just Real Matches</h3>
                 <p class="feature-description">
-                    No algorithmic bias, no sponsored placements. Just honest recommendations powered by privacy-first technology you can trust.
+                    Imagine a world where the BEST dishwasher shows up first—not the one that paid the most. Just products ranked by how well they match what you need.
                 </p>
             </div>
         </div>
@@ -3184,9 +3698,7 @@
                 Built on <span class="gradient-text">Open Infrastructure</span>
             </h3>
             <p style="font-family: 'DM Sans', sans-serif; font-size: 16px; color: #4a4a4a; line-height: 1.7; margin-bottom: 24px;">
-                Inomy is the first application built on the Intents Protocol—an open, neutral commerce layer for the internet.
-                Think SMTP for email, but for shopping. Instead of tech giants controlling your commercial data through surveillance,
-                we're building permissionless infrastructure where you own your shopping needs and sellers bid transparently to fulfill them.
+                Inomy runs on the Intents Protocol—an open, neutral layer for shopping (think SMTP for email, but for commerce). Translation? Nobody owns it. Nobody can rig it. You control your shopping data, sellers bid transparently for your business, and there's zero surveillance. Built this way on purpose.
             </p>
             <div style="display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; margin-top: 32px;">
                 <div style="display: flex; align-items: center; gap: 12px; font-family: 'Outfit', sans-serif; font-size: 14px; color: #2a2a2a; font-weight: 500;">
@@ -3205,39 +3717,57 @@
         </div>
     </section>
 
-    <!-- Rewards Section -->
-    <section class="rewards-section" id="rewards">
+    <!-- REWARDS SECTION -->
+    <section class="rewards-section" id="rewards-section">
         <div class="rewards-container">
-            <h2 class="section-title">Earn <span class="gradient-text">Rewards</span></h2>
-            <p class="rewards-intro">
-                Get paid for your shopping intent. Earn IXP points with every interaction and redeem them for real cash rewards.
+            <h2 class="section-title">Turn Every Search Into <span class="gradient-text">Earnings</span></h2>
+            <p class="rewards-subtitle">
+                In the old web, platforms sold your intent for profit. In the new web, YOU own it. Search, browse, compare—earn IXP for every action. This is intent-based commerce.
             </p>
 
-            <div class="rewards-visual">
-                <div class="rewards-cycle">
-                    <div class="cycle-text">
-                        <span class="cycle-word search">Search</span>
-                        <i class="fas fa-chevron-right cycle-arrow"></i>
-                        <span class="cycle-word find">Find</span>
-                        <i class="fas fa-chevron-right cycle-arrow"></i>
-                        <span class="cycle-word rewards">Rewards</span>
-                    </div>
+            <div class="card-stack-container" id="cardStack">
+                <div class="stack-card stack-card-1">
+                    <div class="stack-card-icon">🔍</div>
+                    <div class="stack-card-title">Product Search</div>
                 </div>
 
-                <div class="rewards-numbers">
-                    <div class="number-stat">
-                        <div class="stat-value">10,000+</div>
-                        <div class="stat-desc">Hours Saved</div>
-                    </div>
-                    <div class="number-stat">
-                        <div class="stat-value">$180K+</div>
-                        <div class="stat-desc">Rewards Earned</div>
-                    </div>
+                <div class="stack-card stack-card-2">
+                    <div class="stack-card-icon">⚖️</div>
+                    <div class="stack-card-title">Compare Products</div>
+                </div>
+
+                <div class="stack-card stack-card-3">
+                    <div class="stack-card-icon">💬</div>
+                    <div class="stack-card-title">Chat with AI</div>
+                </div>
+
+                <div class="stack-card stack-card-4">
+                    <div class="stack-card-icon">👁️</div>
+                    <div class="stack-card-title">View Details</div>
+                </div>
+
+                <div class="stack-card stack-card-5">
+                    <div class="stack-card-icon">📊</div>
+                    <div class="stack-card-title">Read Reviews</div>
+                </div>
+
+                <div class="stack-card stack-card-6">
+                    <div class="stack-card-icon">🔖</div>
+                    <div class="stack-card-title">Save Wishlist</div>
+                </div>
+
+                <div class="stack-card stack-card-7">
+                    <div class="stack-card-icon">🔄</div>
+                    <div class="stack-card-title">Check Alternatives</div>
+                </div>
+
+                <div class="stack-card stack-card-8">
+                    <div class="stack-card-icon">🎯</div>
+                    <div class="stack-card-title">Daily Login</div>
                 </div>
             </div>
         </div>
     </section>
-
 
     <!-- FAQ Section -->
     <section class="faq-section">
@@ -3857,6 +4387,204 @@
             document.getElementById('userDropdown').classList.remove('active');
             alert('Rewards page coming soon!');
         }
+
+        // REWARDS ORBIT ANIMATION
+        (function() {
+            function initRewardsOrbit() {
+                const orbit = document.getElementById('rewardsOrbit');
+                const cards = document.querySelectorAll('.orbit-card');
+
+                if (!orbit || cards.length === 0) {
+                    console.error('❌ Orbit elements not found');
+                    return;
+                }
+
+                console.log('✅ Rewards orbit initialized with', cards.length, 'cards');
+
+                // Start cards in orbiting state
+                cards.forEach(card => {
+                    card.classList.add('orbiting');
+                });
+
+                // Observer to trigger settlement animation
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            console.log('🎯 Orbit visible - settling cards');
+
+                            // Settle cards one by one
+                            cards.forEach((card, index) => {
+                                setTimeout(() => {
+                                    card.classList.remove('orbiting');
+                                    card.classList.add('settled');
+                                }, index * 150);
+                            });
+
+                            // Unobserve after animation triggered
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.3
+                });
+
+                observer.observe(orbit);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initRewardsOrbit);
+            } else {
+                initRewardsOrbit();
+            }
+        })();
+
+        // Initialize Bento Grid (Option 2)
+        (function() {
+            function initBentoGrid() {
+                const bentoGrid = document.getElementById('bentoGrid');
+                const cards = document.querySelectorAll('.bento-card');
+
+                if (!bentoGrid || cards.length === 0) {
+                    console.error('❌ Bento grid elements not found');
+                    return;
+                }
+
+                console.log('✅ Bento grid initialized with', cards.length, 'cards');
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            console.log('🎯 Bento grid visible - animating cards');
+
+                            // Animate cards with stagger
+                            cards.forEach((card, index) => {
+                                setTimeout(() => {
+                                    card.style.opacity = '1';
+                                    card.style.transform = 'translateY(0)';
+                                }, index * 100);
+                            });
+
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.2
+                });
+
+                // Set initial state
+                cards.forEach(card => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(30px)';
+                    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                });
+
+                observer.observe(bentoGrid);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initBentoGrid);
+            } else {
+                initBentoGrid();
+            }
+        })();
+
+        // Initialize Card Stack (Option 3)
+        (function() {
+            function initCardStack() {
+                const stackContainer = document.getElementById('cardStack');
+                const cards = document.querySelectorAll('.stack-card');
+
+                if (!stackContainer || cards.length === 0) {
+                    console.error('❌ Card stack elements not found');
+                    return;
+                }
+
+                console.log('✅ Card stack initialized with', cards.length, 'cards');
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            console.log('🎯 Card stack visible - fanning out');
+
+                            // Trigger fan animation
+                            setTimeout(() => {
+                                stackContainer.classList.add('fanned');
+                            }, 300);
+
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.3
+                });
+
+                observer.observe(stackContainer);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initCardStack);
+            } else {
+                initCardStack();
+            }
+        })();
+
+        // Initialize Particle Shower (Option 4)
+        (function() {
+            function initParticleShower() {
+                const particleContainer = document.getElementById('particleContainer');
+
+                if (!particleContainer) {
+                    console.error('❌ Particle container not found');
+                    return;
+                }
+
+                console.log('✅ Particle shower initialized');
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            console.log('🎯 Particle container visible - starting animation');
+
+                            // Create falling particles
+                            const particleCount = 30;
+                            for (let i = 0; i < particleCount; i++) {
+                                setTimeout(() => {
+                                    createParticle(particleContainer);
+                                }, i * 200);
+                            }
+
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.3
+                });
+
+                observer.observe(particleContainer);
+            }
+
+            function createParticle(container) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.textContent = '💰';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (2 + Math.random() * 2) + 's';
+                particle.style.fontSize = (20 + Math.random() * 10) + 'px';
+
+                container.appendChild(particle);
+
+                // Remove particle after animation
+                setTimeout(() => {
+                    particle.remove();
+                }, 4000);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initParticleShower);
+            } else {
+                initParticleShower();
+            }
+        })();
 
         function startNewChat() {
             // Clear chat messages
