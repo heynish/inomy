@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inomy Price Comparison</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="login-screen" class="screen active">
+        <div class="login-header">
+            <img src="assets/logo.png" alt="Inomy" class="logo-image">
+            <h2 class="login-title">Start Shopping Smarter</h2>
+            <p class="login-subtitle">Sign in to access AI-powered shopping and earn rewards</p>
+        </div>
+
+        <div class="login-reward-banner">
+            <i class="fas fa-gift"></i>
+            <span>Earn <strong>100 IXP</strong> just for signing up!</span>
+        </div>
+
+        <div class="login-buttons">
+            <button class="login-btn login-btn-primary" id="login-wallet">
+                <i class="fas fa-wallet"></i>
+                Continue with Wallet
+            </button>
+            <button class="login-btn login-btn-secondary" id="login-email">
+                <i class="fas fa-envelope"></i>
+                Continue with Email
+            </button>
+            <button class="login-btn login-btn-secondary" id="login-google">
+                <i class="fab fa-google"></i>
+                Continue with Google
+            </button>
+        </div>
+
+        <div class="login-features">
+            <div class="login-feature">
+                <i class="fas fa-shield-alt"></i>
+                <span>Secure & Private</span>
+            </div>
+            <div class="login-feature">
+                <i class="fas fa-coins"></i>
+                <span>Earn IXP Rewards</span>
+            </div>
+            <div class="login-feature">
+                <i class="fas fa-bolt"></i>
+                <span>AI-Powered Search</span>
+            </div>
+        </div>
+
+        <p class="login-terms">
+            By continuing, you agree to our <a href="https://inomy.shop/terms" target="_blank">Terms</a> and <a href="https://inomy.shop/privacy" target="_blank">Privacy Policy</a>
+        </p>
+    </div>
+
+    <!-- Main Screen (After Login) -->
+    <div id="main-screen" class="screen">
+        <!-- User Header -->
+        <div class="user-header">
+            <div class="user-info">
+                <div class="user-details">
+                    <div class="user-address" id="user-address">0x742d...f44e</div>
+                    <div class="user-stats">
+                        <span class="ixp-badge">
+                            <i class="fas fa-coins"></i>
+                            <span id="user-ixp">2,450</span> IXP
+                        </span>
+                        <span class="rank-badge">
+                            <i class="fas fa-trophy"></i>
+                            Rank #<span id="user-rank">23</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <button class="logout-btn-header" id="logout-btn-header">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
+
+        <!-- Current Product -->
+        <div class="current-product" id="current-product">
+            <div class="section-header">
+                <h3>Current Product</h3>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/80" alt="Product" id="product-image" class="product-image">
+                <div class="product-info">
+                    <div class="product-title" id="product-title">Loading product...</div>
+                    <div class="product-price" id="product-price">$299.99</div>
+                    <div class="product-site" id="product-site">amazon.com</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Price Comparison -->
+        <div class="price-comparison" id="price-comparison">
+            <div class="section-header">
+                <h3>Better Prices</h3>
+                <button class="refresh-btn" id="refresh-prices">
+                    <i class="fas fa-sync"></i>
+                </button>
+            </div>
+
+            <!-- Price Alert Banner -->
+            <div class="price-alert-banner" id="price-alert-banner">
+                <div class="price-alert-content">
+                    <i class="fas fa-bell"></i>
+                    <span>Get notified when price drops</span>
+                </div>
+                <button class="price-alert-btn" id="track-price-btn">
+                    Track Price
+                </button>
+            </div>
+
+            <div class="loading-state" id="loading-prices">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Finding best prices...</p>
+            </div>
+
+            <div class="price-list" id="price-list">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
+
+        <!-- Similar Products -->
+        <div class="similar-products" id="similar-products">
+            <div class="section-header">
+                <h3>Similar Products</h3>
+            </div>
+
+            <div class="similar-list" id="similar-list">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
+
+        <!-- NPS Survey -->
+        <div class="nps-survey" id="nps-survey">
+            <div class="nps-question">How likely are you to refer Inomy to friends?</div>
+            <div class="nps-scale">
+                <button class="nps-btn" data-score="1">1</button>
+                <button class="nps-btn" data-score="2">2</button>
+                <button class="nps-btn" data-score="3">3</button>
+                <button class="nps-btn" data-score="4">4</button>
+                <button class="nps-btn" data-score="5">5</button>
+                <button class="nps-btn" data-score="6">6</button>
+                <button class="nps-btn" data-score="7">7</button>
+                <button class="nps-btn" data-score="8">8</button>
+                <button class="nps-btn" data-score="9">9</button>
+                <button class="nps-btn" data-score="10">10</button>
+            </div>
+            <div class="nps-labels">
+                <span class="nps-label-left">Not likely</span>
+                <span class="nps-label-right">Very likely</span>
+            </div>
+        </div>
+
+        <!-- Footer Actions -->
+        <div class="footer-actions">
+            <a href="https://inomy.shop/rewards.html" target="_blank" class="btn-secondary">
+                <i class="fas fa-gift"></i>
+                View Rewards
+            </a>
+            <button class="btn-logout" id="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                Logout
+            </button>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

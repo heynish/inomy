@@ -1,0 +1,68 @@
+{
+  "manifest_version": 3,
+  "name": "Inomy Price Comparison",
+  "version": "1.0.0",
+  "description": "Compare prices across retailers and earn IXP rewards while shopping",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://*/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.amazon.com/*/dp/*",
+        "*://*.amazon.com/*/gp/product/*",
+        "*://*.amazon.in/*/dp/*",
+        "*://*.walmart.com/ip/*",
+        "*://*.target.com/p/*",
+        "*://*.bestbuy.com/site/*",
+        "*://*.ebay.com/itm/*",
+        "*://*.etsy.com/listing/*",
+        "*://*.wayfair.com/*",
+        "*://*.homedepot.com/p/*",
+        "*://*.lowes.com/pd/*",
+        "*://*.macys.com/shop/product/*",
+        "*://*.nordstrom.com/s/*",
+        "*://*.nike.com/t/*",
+        "*://*.adidas.com/**/shoes/*",
+        "*://*.zappos.com/product/*"
+      ],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["*://*/*"],
+      "js": ["detector.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["popup.html", "assets/*"],
+      "matches": ["*://*/*"]
+    }
+  ]
+}
